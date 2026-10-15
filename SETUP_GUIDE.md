@@ -4,7 +4,7 @@
 
 ### Windows
 
-#### 1.1 Install Java 21+
+#### 1.1 Install Java 25+
 
 1. Download from: https://learn.microsoft.com/java/openjdk/download (this machine runs Java 26)
 2. Run the installer and follow the prompts

@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-EventSphere is a fully functional Event & Venue Booking Platform built with Java 21, Jakarta Servlet 6.1, JSP 4.0, and PostgreSQL. The application implements a three-tier architecture with complete authentication, authorization, and data management capabilities.
+EventSphere is a fully functional Event & Venue Booking Platform built with Java 25, Jakarta Servlet 6.1, JSP 4.0, and PostgreSQL. The application implements a three-tier architecture with complete authentication, authorization, and data management capabilities.
 
 ## Project Structure Overview
 
@@ -74,7 +74,7 @@ EventSphere/
 
 ### ✅ Technology Stack Requirements
 
-- [x] Java 21 (JDK 21+; verified on Java 26)
+- [x] Java 25 (JDK 25+; verified on Java 26)
 - [x] Jakarta Servlet 6.1 (Tomcat 11 compatible)
 - [x] JSP 4.0
 - [x] HTML5 & CSS3

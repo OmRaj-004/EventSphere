@@ -172,7 +172,7 @@ pom.xml
 │   ├── artifactId: event-sphere
 │   ├── version: 1.0.3
 │   ├── packaging: war
-│   └── Java source/target: 21
+│   └── Java source/target: 25
 │
 ├── Dependencies
 │   ├── Jakarta Servlet API 6.1.0
@@ -192,7 +192,7 @@ pom.xml
 │
 └── Properties
     ├── Source encoding: UTF-8
-    ├── Compiler source/target: 21
+    ├── Compiler source/target: 25
 ```
 
 ---

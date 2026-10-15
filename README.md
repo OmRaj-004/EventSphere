@@ -6,7 +6,7 @@ EventSphere is a web application for booking and managing event venues. It uses 
 
 ## Technology Stack
 
-- **Java**: 21 (language level; verified running on Java 26)
+- **Java**: 25 (language level; verified running on Java 26)
 - **Web Framework**: Jakarta Servlet 6.1 (Tomcat 11 compatible)
 - **View Layer**: JSP 4.0
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
@@ -77,7 +77,7 @@ EventSphere/
 
 ## Prerequisites
 
-- **Java 21** or later (developed with Java 26)
+- **Java 25** or later (developed with Java 26)
 - **Maven 3.8+**
 - **PostgreSQL 12+** (developed against PostgreSQL 18)
 - **Apache Tomcat 11**
@@ -370,7 +370,7 @@ The application uses the Data Access Object (DAO) pattern:
 - [ ] PostgreSQL database created and running
 - [ ] All tables created with correct schema
 - [ ] DBUtil.java configured with correct credentials
-- [ ] Java 21+ installed
+- [ ] Java 25+ installed
 - [ ] Maven build successful (`mvn clean package`)
 - [ ] WAR file generated without errors
 - [ ] Tomcat 11 installed and configured
