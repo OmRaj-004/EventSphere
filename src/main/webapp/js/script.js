@@ -128,59 +128,6 @@ function getVenuesUrl() {
     // Already on /venues (e.g. /EventSphere/venues) -> use it as-is, never append again
     if (/(^|\/)venues\/?$/.test(path)) {
         return path;
-<<<<<<< HEAD
-=======
-    }
-    // On home page (/EventSphere/ or /EventSphere/index.jsp) -> go to sibling /venues
-    return path.replace(/\/(index\.jsp)?$/, '') + '/venues';
-}
-
-function updateMultiBooking() {
-    const boxes = document.querySelectorAll('.venue-pick-box:checked');
-    const btn = document.getElementById('multiBookBtn');
-    if (btn) {
-        btn.style.display = boxes.length > 1 ? '' : 'none';
-        btn.textContent = 'Book Selected Together (' + boxes.length + ')';
-    }
-}
-
-function submitMultiBooking(event) {
-    const boxes = document.querySelectorAll('.venue-pick-box:checked');
-    if (boxes.length < 2) {
-        showError('Select at least two venues to book together');
-        if (event) event.preventDefault();
-        return false;
-    }
-    const ids = Array.from(boxes).map(b => b.value).join(',');
-    document.getElementById('multiVenueIds').value = ids;
-    return true;
-}
-
-function clearFilters() {
-    const eventType = document.getElementById('eventType');
-    const maxCapacity = document.getElementById('maxCapacity');
-    const priceRange = document.getElementById('priceRange');
-    const eventDate = document.getElementById('eventDate');
-    
-    if (eventType) eventType.value = '';
-    if (maxCapacity) maxCapacity.value = '';
-    if (priceRange) priceRange.value = '';
-    if (eventDate) eventDate.value = '';
-    
-    const form = eventType?.closest('form');
-    const action = form?.getAttribute('action') || getVenuesUrl();
-    window.location.href = action;
-}
-
-function validateBookingForm(form) {
-    const date = form?.querySelector('[name="bookingDate"]')?.value;
-    const start = form?.querySelector('[name="startTime"]')?.value;
-    const end = form?.querySelector('[name="endTime"]')?.value;
-    const guests = Number(form?.querySelector('[name="expectedGuests"]')?.value);
-    if (!date || date < new Date().toISOString().split('T')[0]) {
-        showError('Please select a future booking date');
-        return false;
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     }
     // On home page (/EventSphere/ or /EventSphere/index.jsp) -> go to sibling /venues
     return path.replace(/\/(index\.jsp)?$/, '') + '/venues';
@@ -317,7 +264,6 @@ function initializeDatePicker() {
             input.setAttribute('min', today);
         }
     });
-<<<<<<< HEAD
 }
 
 // Confirm Action (styled in-page modal — replaces native confirm() dialogs)
@@ -381,8 +327,6 @@ function esInterceptConfirm(message) {
         }
     });
     return false;
-=======
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 function confirmDelete(message) {
@@ -469,27 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial check
         handleScroll();
     }
-<<<<<<< HEAD
-=======
-
-    // Scroll-reveal micro-interaction (skipped if user prefers reduced motion)
-    const revealEls = document.querySelectorAll('.reveal');
-    if (revealEls.length > 0) {
-        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-            revealEls.forEach(el => observer.observe(el));
-        } else {
-            revealEls.forEach(el => el.classList.add('visible'));
-        }
-    }
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 });
 
 // Close alert messages
@@ -516,7 +439,6 @@ function setLoadingState(button, isLoading) {
         }
     }
 }
-<<<<<<< HEAD
 
 // Venue image lightbox (venue details page)
 function esOpenLightbox(src, alt) {
@@ -634,5 +556,3 @@ document.addEventListener('DOMContentLoaded', function() {
         venueFilterForm.addEventListener('submit', esAjaxVenueSearch);
     }
 });
-=======
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd

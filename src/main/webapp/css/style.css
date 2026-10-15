@@ -78,32 +78,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-<<<<<<< HEAD
 /* Navigation - solid dark so white links stay readable over light hero image */
 .navbar {
     background-color: #0f172a;
-=======
-::selection {
-    background: var(--primary-color);
-    color: #fff;
-}
-
-:focus-visible {
-    outline: 3px solid rgba(99, 102, 241, 0.45);
-    outline-offset: 2px;
-    border-radius: 6px;
-}
-
-section[id] {
-    scroll-margin-top: 84px;
-}
-
-/* Navigation - solid dark so white links stay readable over light hero image */
-.navbar {
-    background-color: rgba(15, 23, 42, 0.92);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     padding: 0.9rem 2rem;
     position: sticky;
     top: 0;
@@ -111,10 +88,6 @@ section[id] {
     right: 0;
     z-index: 1000;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-<<<<<<< HEAD
-=======
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 .navbar.scrolled {
@@ -734,7 +707,6 @@ section[id] {
 .card {
     background-color: white;
     border: 1px solid var(--border-color);
-<<<<<<< HEAD
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -743,16 +715,6 @@ section[id] {
 
 .card:hover {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-=======
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.card:hover {
-    box-shadow: var(--shadow-lg);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     transform: translateY(-4px);
     border-color: var(--primary-light);
 }
@@ -960,30 +922,18 @@ section[id] {
     display: flex;
     flex-direction: column;
     height: 100%;
-<<<<<<< HEAD
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-=======
-    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-    overflow: hidden;
-    border-radius: var(--radius-lg);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 .venue-card:hover {
     transform: translateY(-8px);
-<<<<<<< HEAD
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-=======
-    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
-    border-color: var(--primary-light);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 .venue-image {
     width: 100%;
     height: 200px;
-<<<<<<< HEAD
     background-color: var(--gray-light);
     border-radius: 12px 12px 0 0;
     object-fit: cover;
@@ -992,16 +942,6 @@ section[id] {
 
 .venue-card:hover .venue-image {
     transform: scale(1.05);
-=======
-    background: linear-gradient(135deg, var(--gray-light), #e2e8f0);
-    border-radius: 0;
-    object-fit: cover;
-    transition: transform 0.45s ease;
-}
-
-.venue-card:hover .venue-image {
-    transform: scale(1.06);
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 .venue-details {
@@ -1435,24 +1375,9 @@ section h2::after {
 }
 
 .table-scroll {
-<<<<<<< HEAD
     overflow-x: auto;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-=======
-    overflow: auto;
-    border: 1px solid #e2e8f0;
-    border-radius: var(--radius-md);
-    max-height: 560px;
-    box-shadow: var(--shadow-sm);
-}
-
-.table-scroll thead th,
-.dash-table thead th {
-    position: sticky;
-    top: 0;
-    z-index: 2;
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 }
 
 .dash-table {
@@ -4034,7 +3959,6 @@ section h2::after {
         grid-template-columns: 56px minmax(0, 1fr);
     }
 }
-<<<<<<< HEAD
 
 /* In-page confirm modal (replaces native confirm() dialogs) */
 .es-confirm-overlay {
@@ -4205,5 +4129,3 @@ img.zoomable {
         transition: none !important;
     }
 }
-=======
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd

@@ -17,23 +17,14 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
         <title>
             Manage Venues - EventSphere
         </title>
-<<<<<<< HEAD
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
-=======
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/EventSphere Logo.png">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     </head>
     <body class="vm-page">
         <nav class="navbar">
             <div class="navbar-container">
                 <a href="${pageContext.request.contextPath}/" class="navbar-brand">
-<<<<<<< HEAD
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
-=======
-                    <img src="${pageContext.request.contextPath}/images/EventSphere Logo.png" alt="EventSphere" class="brand-logo">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                 </a>
                 <div class="auth-buttons">
                     <a href="${pageContext.request.contextPath}/admin/dashboard.jsp" class="btn btn-outline">
@@ -189,11 +180,7 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
                 </div>
             <% } %>
         </main>
-<<<<<<< HEAD
         <script src="${pageContext.request.contextPath}/js/script.js?v=5">
-=======
-        <script src="${pageContext.request.contextPath}/js/script.js?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
         </script>
         <script>
             var q=document.getElementById('vmSearch'),ft=document.getElementById('vmType'),fs=document.getElementById('vmStatus'),so=document.getElementById('vmSort'),grid=document.getElementById('vmGrid');

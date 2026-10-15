@@ -40,7 +40,6 @@ public class AdminBookingServlet extends HttpServlet {
                 success = bookingDAO.rejectBooking(id);
             }
             if (success) {
-<<<<<<< HEAD
                 request.getSession().setAttribute("adminBookingSuccess",
                         "approve".equals(action) ? "Booking approved." : "Booking rejected.");
                 Object adminId = request.getSession(false) == null ? null : request.getSession(false).getAttribute("userId");
@@ -52,24 +51,6 @@ public class AdminBookingServlet extends HttpServlet {
                     new NotificationDAO().create(booking.getCustomerId(), "CUSTOMER",
                             "approve".equals(action) ? "Booking approved" : "Booking rejected",
                             "Booking " + booking.getBookingNumber() + " was " + ("approve".equals(action) ? "approved." : "rejected."),
-=======
-                boolean approved = "approve".equals(action);
-                Object adminId = request.getSession(false) == null ? null : request.getSession(false).getAttribute("userId");
-                Booking booking = bookingDAO.getBookingById(id);
-                String summary = booking == null ? ("booking #" + id) : describeBooking(booking);
-                request.getSession().setAttribute("adminBookingSuccess",
-                        (approved ? "Approved " : "Rejected ") + summary + ".");
-                new AuditDAO().log(adminId instanceof Integer ? (Integer) adminId : null, "ADMIN",
-                        approved ? "BOOKING_APPROVE" : "BOOKING_REJECT",
-                        "booking", id, booking == null ? null : booking.getBookingNumber());
-                if (booking != null) {
-                    new NotificationDAO().create(booking.getCustomerId(), "CUSTOMER",
-                            approved ? "Booking approved - " + booking.getBookingNumber()
-                                    : "Booking rejected - " + booking.getBookingNumber(),
-                            approved
-                                    ? "Good news! " + summary + " has been approved. View your bill from your dashboard."
-                                    : "Sorry, " + summary + " was rejected (venue unavailable or details invalid). Please try another date or venue.",
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                             "/customer/dashboard.jsp");
                 }
             } else {
@@ -79,35 +60,5 @@ public class AdminBookingServlet extends HttpServlet {
             request.getSession().setAttribute("adminBookingError", "Invalid booking action.");
         }
         response.sendRedirect(request.getContextPath() + target);
-<<<<<<< HEAD
-=======
-    }
-
-    private String describeBooking(Booking booking) {
-        String eventName = null;
-        String venueName = null;
-        try {
-            com.eventsphere.model.Event event = new com.eventsphere.dao.EventDAO().getEventById(booking.getEventId());
-            if (event != null) {
-                eventName = event.getName();
-            }
-            com.eventsphere.model.Venue venue = new com.eventsphere.dao.VenueDAO().getVenueById(booking.getVenueId());
-            if (venue != null) {
-                venueName = venue.getName();
-            }
-        } catch (RuntimeException ignored) {
-        }
-        StringBuilder sb = new StringBuilder("booking ").append(booking.getBookingNumber());
-        if (eventName != null) {
-            sb.append(" (").append(eventName).append(')');
-        }
-        if (venueName != null) {
-            sb.append(" at ").append(venueName);
-        }
-        if (booking.getBookingDate() != null) {
-            sb.append(" on ").append(booking.getBookingDate());
-        }
-        return sb.toString();
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     }
 }

@@ -13,24 +13,15 @@
         <title>
             Browse Venues - EventSphere
         </title>
-<<<<<<< HEAD
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-=======
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/EventSphere Logo.png">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     </head>
     <body>
         <!-- Navigation Bar -->
         <nav class="navbar">
             <div class="navbar-container">
                 <a href="${pageContext.request.contextPath}/" class="navbar-brand">
-<<<<<<< HEAD
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
-=======
-                    <img src="${pageContext.request.contextPath}/images/EventSphere Logo.png" alt="EventSphere" class="brand-logo">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                 </a>
                 <ul class="nav-links">
                     <li>
@@ -84,31 +75,19 @@
             </div>
         </nav>
         <!-- Page Content -->
-<<<<<<< HEAD
         <section id="main" style="padding: 2rem;">
-=======
-        <section style="padding: 2rem;">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
             <div class="container">
                 <h2>
                     Available Venues
                 </h2>
                 <div class="search-form" style="margin-bottom: 2rem;">
-<<<<<<< HEAD
                     <form id="venueFilterForm" action="${pageContext.request.contextPath}/venues">
-=======
-                    <form action="${pageContext.request.contextPath}/venues" onsubmit="searchVenues(event)">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                         <div class="search-form-row">
                             <div class="form-group">
                                 <label for="eventType">
                                     Event Type
                                 </label>
-<<<<<<< HEAD
                                 <select id="eventType" name="eventType">
-=======
-                                <select id="eventType">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                                     <option value="">
                                         All Types
                                     </option>
@@ -130,21 +109,13 @@
                                 <label for="maxCapacity">
                                     Min Capacity
                                 </label>
-<<<<<<< HEAD
                                 <input type="number" id="maxCapacity" name="maxCapacity" placeholder="Capacity" min="1">
-=======
-                                <input type="number" id="maxCapacity" placeholder="Capacity" min="1">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                             </div>
                             <div class="form-group">
                                 <label for="priceRange">
                                     Max Price/Hour
                                 </label>
-<<<<<<< HEAD
                                 <input type="number" id="priceRange" name="priceRange" placeholder="Price" min="0" step="100">
-=======
-                                <input type="number" id="priceRange" placeholder="Price" min="0" step="100">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">
@@ -155,10 +126,7 @@
                         </button>
                     </form>
                 </div>
-<<<<<<< HEAD
                 <div id="venueResults">
-=======
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                 <%
                     List<Venue> venues = (List<Venue>) request.getAttribute("venues");
                     if (venues != null && !venues.isEmpty()) {
@@ -261,10 +229,7 @@
                 </a>
             </div>
         <% } %>
-<<<<<<< HEAD
                 </div>
-=======
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     </div>
 </section>
 <!-- Footer -->
@@ -277,11 +242,7 @@
         </p>
     </div>
 </footer>
-<<<<<<< HEAD
 <script src="${pageContext.request.contextPath}/js/script.js">
-=======
-<script src="${pageContext.request.contextPath}/js/script.js?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
 </script>
 </body>
 </html>

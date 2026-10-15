@@ -26,23 +26,14 @@ Venue formVenue = (Venue) request.getAttribute("venue");
             <%= isEdit ? "Edit Venue" : "List a Venue" %>
             - EventSphere
         </title>
-<<<<<<< HEAD
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
-=======
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/EventSphere Logo.png">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
     </head>
     <body class="host-page">
         <nav class="navbar">
             <div class="navbar-container">
                 <a href="${pageContext.request.contextPath}/" class="navbar-brand">
-<<<<<<< HEAD
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
-=======
-                    <img src="${pageContext.request.contextPath}/images/EventSphere Logo.png" alt="EventSphere" class="brand-logo">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
                 </a>
                 <div class="auth-buttons">
                     <a href="${pageContext.request.contextPath}/" class="btn btn-outline">
@@ -186,11 +177,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                 </p>
             </form>
         </main>
-<<<<<<< HEAD
         <script src="${pageContext.request.contextPath}/js/script.js">
-=======
-        <script src="${pageContext.request.contextPath}/js/script.js?v=6">
->>>>>>> 83a82695c72a46a2fa46013eb6b785b5572bcbbd
         </script>
         <script>
             function validateVenueForm(form) {
