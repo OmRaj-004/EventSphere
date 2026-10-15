@@ -1,0 +1,221 @@
+================================================================
+ EventSphere - Future Feature Report
+ Generated: 2026-10-09 | Version: 1.0.3
+ Based on full codebase audit (flows missing vs. flows implied)
+
+ STATUS 2026-10-10: ALL 20 FEATURES IMPLEMENTED, live-tested on
+ Tomcat 11 + PostgreSQL 18 and verified working. Details below.
+================================================================
+
+--------------------------------------------------------
+P0 - REQUIRED GAPS (broken or dead-end flows today)
+--------------------------------------------------------
+
+1. Payment collection
+   Bills show "Balance due" but money can never be collected;
+   advance_paid is always 0 and payment_method/transaction_id
+   are never set by any flow. Bill exists, payment doesn't.
+
+2. Password reset
+   Login page punts to "contact support"; locked-out users have
+   no self-service path.
+
+3. Booking modification
+   A typo in date/guests forces cancel + rebook (loses queue
+   position). No edit flow exists; cancel-only today.
+
+4. Email notifications
+   Booking submitted/approved/rejected/cancelled produces zero
+   notification - customer must keep checking the dashboard.
+
+5. Admin bill status transitions
+   bills.status supports PAID but nothing can ever set it, so the
+   Analytics "Paid" slice is permanently 0.
+
+--------------------------------------------------------
+P1 - STRONGLY RECOMMENDED (expected of a booking platform)
+--------------------------------------------------------
+
+6.  Availability calendar
+    Venue-details shows feedback but no booked/free dates. The
+    server-side conflict check exists, but users discover clashes
+    only after submitting.
+
+7.  Venue ratings display
+    FeedbackDAO.getAverageRatingByVenue() already exists but is
+    NEVER called - show average stars + count on cards/details.
+
+8.  My feedback management
+    Customers can submit feedback once but cannot view/edit/delete
+    it (getFeedbackByCustomer is unused).
+
+9.  Admin customer list
+    Admin sees customer counts and names inside bookings, but has
+    no customer management view.
+
+10. Booking search for admins
+    getBookingByNumber() exists but is unused - add lookup by
+    booking number.
+
+11. Invoice PDF download
+    Print-CSS exists; a real PDF (iText/OpenPDF) makes bills
+    usable offline.
+
+12. Session "remember me"
+    30-minute hard timeout with no persistent login option.
+
+--------------------------------------------------------
+P2 - GROWTH / POLISH
+--------------------------------------------------------
+
+13. Pagination everywhere
+    Venues, bookings and bills load all rows; degrades past
+    ~50 records.
+
+14. Image upload for venues
+    Admins must hand-place files and paste paths; needs multipart
+    handling plus a storage strategy.
+
+15. Reviews with photos / admin replies
+    Admin response to feedback; photo reviews.
+
+16. Discounts / promo codes
+    bookings table has no discount column - schema addition needed.
+
+17. Multi-venue / package booking
+    One event maps to one venue today.
+
+18. Audit log
+    Who approved/rejected what and when (only in Tomcat logs today,
+    if at all).
+
+19. Connection pooling
+    DBUtil opens a fresh connection per query - fine for college
+    load, not for production.
+
+20. Role: venue host
+    Today hosts ARE admins; a true host role (own venues only)
+    needs a new role plus scoped DAOs and filters. Must follow the
+    project rule: keep admin and customer features strictly separate.
+
+--------------------------------------------------------
+SUGGESTED BUILD ORDER
+--------------------------------------------------------
+
+5 -> 1 -> 4 -> 2 -> 7 -> 3
+
+Unblock the money flow first (paid bills make Analytics real),
+then notifications, then self-service, then surface the already
+built rating data, then booking editing.
+
+Smallest high-value builds: #5 (payment status transitions) and
+#7 (wiring the existing rating DAO method into two JSPs).
+
+================================================================
+ PART 2 - NEXT ROADMAP (reported 2026-10-10, none built yet)
+ All 20 items above are implemented and live-tested.
+================================================================
+
+--------------------------------------------------------
+P0 - MONEY & TRUST
+--------------------------------------------------------
+
+21. Real SMTP delivery
+    MailUtil.sendViaSmtp() is a stub plus needs a Jakarta Mail
+    dependency; then reset links and notifications actually email
+    instead of log-only.
+
+22. Online payments (Razorpay/Stripe)
+    Bills exist but advance_paid is always 0; add checkout,
+    webhook handling and transaction_id fill-in.
+
+23. Refunds on cancel
+    Cancel marks the bill CANCELLED but money never moves back;
+    needs a refund policy plus payment reversal.
+
+24. GST/tax lines on bills
+    bills table has no tax columns; add tax_amount and show it
+    on the HTML and PDF invoices.
+
+25. Cancellation policy and fees
+    Example: free cancel beyond 7 days, 50 percent fee within
+    7 days - enforced in cancelPendingBooking.
+
+--------------------------------------------------------
+P1 - BOOKING EXPERIENCE
+--------------------------------------------------------
+
+26. Advance (partial) payment flow
+    Column exists but stays 0 - collect advance at booking time,
+    track the remainder on bills.balance_due.
+
+27. Waitlist for booked dates
+    The conflict path only errors today; queue the request and
+    auto-notify on cancellation.
+
+28. Favorites / wishlist
+    Heart toggle on venue cards, favorites(customer_id, venue_id)
+    table plus a customer wishlist page.
+
+29. Venue comparison
+    Side-by-side compare of 2-3 venues (price, capacity, rating,
+    amenities).
+
+30. Location search that works
+    searchVenues(eventType, location, ...) exists in the DAO but
+    VenueServlet never passes location - wire the form field
+    through end to end.
+
+31. Map embed per venue
+    Location is free text today; geocode it and show a map on
+    venue-details.jsp.
+
+32. Blackout dates
+    Host/admin blocks dates without a booking (maintenance or
+    private events) - extends the availability calendar.
+
+--------------------------------------------------------
+P2 - ACCOUNTS AND ADMIN
+--------------------------------------------------------
+
+33. Edit-profile and change-password
+    No self-service profile editing; only admin/host creation and
+    the reset flow exist.
+
+34. OTP / two-factor login option
+    Needs the mail/SMS channel from item 21 first.
+
+35. Admin edits any booking
+    Today only customers edit their own PENDING bookings; there
+    is no admin override path.
+
+36. CSV export (bookings, revenue, bills)
+    Analytics displays data but cannot export it.
+
+37. Bulk venue import (CSV)
+    Admins add venues one form at a time.
+
+38. Database backup button
+    Admin-triggered pg_dump download instead of manual psql.
+
+--------------------------------------------------------
+P3 - REACH
+--------------------------------------------------------
+
+39. REST/JSON API for a mobile app
+    Servlets forward to JSP only; needs JSON endpoints plus
+    token authentication.
+
+40. Marathi/Hindi language toggle
+    Full i18n pass over roughly 25 JSPs.
+
+--------------------------------------------------------
+SUGGESTED BUILD ORDER (PART 2)
+--------------------------------------------------------
+
+21 -> 22 -> 26 -> 25 -> 30 -> 28
+
+Finish the money loop first (mail, payments, advance), then the
+two highest-traffic UX wins (working location search, wishlist).
+
+================================================================

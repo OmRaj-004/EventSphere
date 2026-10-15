@@ -1,0 +1,20 @@
+# Java / Maven build output
+/target/
+/bin/
+
+# Eclipse / IDE metadata
+.classpath
+.project
+.settings/
+.vscode/
+
+# Package/deploy artifacts
+*.war
+*.ear
+
+# Compiled Java classes
+*.class
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 960" role="img" aria-label="EventSphere">
+  <defs>
+    <radialGradient id="esn-sky" cx="0.5" cy="0.32" r="0.9">
+      <stop offset="0" stop-color="#1d3a68"/>
+      <stop offset="1" stop-color="#0b1c3a"/>
+    </radialGradient>
+    <linearGradient id="esn-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0d488"/>
+      <stop offset="0.5" stop-color="#c9a227"/>
+      <stop offset="1" stop-color="#8a6508"/>
+    </linearGradient>
+    <linearGradient id="esn-goldtext" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8b93c"/>
+      <stop offset="1" stop-color="#9a7418"/>
+    </linearGradient>
+    <linearGradient id="esn-chair" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3b341"/>
+      <stop offset="1" stop-color="#a07a1c"/>
+    </linearGradient>
+    <linearGradient id="esn-cloth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8e4d8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- White backdrop -->
+  <rect x="0" y="0" width="1000" height="960" rx="60" fill="#ffffff"/>
+
+  <!-- Medallion -->
+  <circle cx="500" cy="380" r="302" fill="url(#esn-gold)"/>
+  <circle cx="500" cy="380" r="282" fill="url(#esn-sky)"/>
+  <circle cx="500" cy="380" r="272" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.85"/>
+
+  <!-- City skyline silhouette -->
+  <g fill="#0a1830" opacity="0.9">
+    <rect x="262" y="330" width="46" height="150"/>
+    <rect x="314" y="300" width="38" height="180"/>
+    <rect x="358" y="348" width="52" height="132"/>
+    <rect x="596" y="342" width="50" height="138"/>
+    <rect x="652" y="306" width="40" height="174"/>
+    <rect x="698" y="336" width="44" height="144"/>
+  </g>
+
+  <!-- Draped canopy -->
+  <path d="M500 128 C 440 220, 380 300, 352 430 L 316 430 L 316 470 C 360 330, 430 230, 500 150 Z" fill="url(#esn-gold)"/>
+  <path d="M500 128 C 560 220, 620 300, 648 430 L 684 430 L 684 470 C 640 330, 570 230, 500 150 Z" fill="url(#esn-gold)"/>
+  <path d="M500 150 C 452 232, 400 306, 378 428 L 352 428 C 376 300, 438 222, 500 128 Z" fill="#8a6508" opacity="0.55"/>
+  <path d="M500 150 C 548 232, 600 306, 622 428 L 648 428 C 624 300, 562 222, 500 128 Z" fill="#8a6508" opacity="0.55"/>
+  <rect x="296" y="420" width="36" height="220" rx="8" fill="url(#esn-gold)"/>
+  <rect x="668" y="420" width="36" height="220" rx="8" fill="url(#esn-gold)"/>
+
+  <!-- Star topper -->
+  <path d="M500 34 L513 105 L584 118 L513 131 L500 202 L487 131 L416 118 L487 105 Z" fill="url(#esn-gold)"/>
+
+  <!-- Chairs (stylised gold) -->
+  <g fill="url(#esn-chair)">
+    <rect x="352" y="500" width="52" height="86" rx="24"/>
+    <rect x="346" y="580" width="66" height="20" rx="8"/>
+    <rect x="352" y="598" width="10" height="56"/>
+    <rect x="398" y="598" width="10" height="56"/>
+    <rect x="596" y="500" width="52" height="86" rx="24"/>
+    <rect x="588" y="580" width="66" height="20" rx="8"/>
+    <rect x="594" y="598" width="10" height="56"/>
+    <rect x="640" y="598" width="10" height="56"/>
+  </g>
+
+  <!-- Banquet table -->
+  <path d="M392 612 L608 612 L636 742 Q 500 762 364 742 Z" fill="url(#esn-cloth)"/>
+  <ellipse cx="500" cy="612" rx="108" ry="26" fill="#ffffff"/>
+  <ellipse cx="500" cy="612" rx="108" ry="26" fill="none" stroke="#d8d2c2" stroke-width="3"/>
+
+  <!-- Centerpiece -->
+  <g>
+    <path d="M488 560 L512 560 L508 596 L492 596 Z" fill="#1d3a68"/>
+    <g fill="#2f7d4f">
+      <ellipse cx="478" cy="556" rx="10" ry="18" transform="rotate(-30 478 556)"/>
+      <ellipse cx="522" cy="556" rx="10" ry="18" transform="rotate(30 522 556)"/>
+      <ellipse cx="500" cy="548" rx="9" ry="16"/>
+    </g>
+    <g fill="#ffffff" stroke="#d8d2c2" stroke-width="2">
+      <circle cx="486" cy="540" r="11"/>
+      <circle cx="514" cy="540" r="11"/>
+      <circle cx="500" cy="530" r="11"/>
+      <circle cx="493" cy="552" r="9"/>
+      <circle cx="507" cy="552" r="9"/>
+    </g>
+    <g fill="#e8b93c">
+      <circle cx="486" cy="540" r="3.5"/>
+      <circle cx="514" cy="540" r="3.5"/>
+      <circle cx="500" cy="530" r="3.5"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="500" y="796" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="bold"><tspan fill="#14264a">Event</tspan><tspan fill="url(#esn-goldtext)">Sphere</tspan></text>
+  <text x="500" y="858" text-anchor="middle" font-family="Verdana, 'Segoe UI', sans-serif" font-size="32" letter-spacing="9" fill="#33415c">BOOK • CELEBRATE • TOGETHER</text>
+  <line x1="150" y1="898" x2="300" y2="898" stroke="#c9a227" stroke-width="5"/>
+  <line x1="700" y1="898" x2="850" y2="898" stroke="#c9a227" stroke-width="5"/>
+  <text x="500" y="908" text-anchor="middle" font-family="Verdana, 'Segoe UI', sans-serif" font-size="25" letter-spacing="7" fill="#5b6b8c">VENUES FOR EVERY MOMENT</text>
+</svg>
