@@ -4,11 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Forgot Password - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -23,14 +24,15 @@
                 </div>
             </div>
         </nav>
-        <section style="padding: 3rem 2rem; background-color: var(--gray-lighter);">
+        <main>
+        <section class="forgot-page">
             <div class="container">
-                <div style="max-width: 500px; margin: 0 auto;">
+                <div class="register-form-container">
                     <div class="card">
                         <h2 class="card-header">
                             Reset Your Password
                         </h2>
-                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                        <p class="text-muted-small">
                             Enter your account email and type. A single-use reset link valid for 30 minutes will be generated.
                         </p>
                         <%
@@ -78,13 +80,13 @@
                                     </option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Send Reset Link
                             </button>
                         </form>
-                        <div style="margin-top: 1.5rem; text-align: center;">
+                        <div class="register-login-link">
                             <p>
-                                <a href="${pageContext.request.contextPath}/login" style="color: var(--primary-color); font-weight: bold;">
+                                <a href="${pageContext.request.contextPath}/login" class="login-link register-link">
                                     Back to login
                                 </a>
                             </p>
@@ -93,7 +95,8 @@
                 </div>
             </div>
         </section>
-        <footer class="footer" style="margin-top: 3rem;">
+                </main>
+<footer class="footer footer-compact">
             <div class="footer-container">
                 <p>
                     &copy;

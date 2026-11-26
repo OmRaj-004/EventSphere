@@ -1,0 +1,330 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+<head>
+<meta charset="utf-8">
+<title>EventSphere - Project Documentation</title>
+<style>
+body { font-family: "Times New Roman", serif; font-size: 14pt; line-height: 1.5; color: #111111; }
+h1 { font-size: 20pt; color: #0f172a; page-break-before: always; border-bottom: 2px solid #6366f1; padding-bottom: 6pt; }
+h2 { font-size: 16pt; color: #1e1b4b; }
+h3 { font-size: 14pt; color: #333333; }
+table { border-collapse: collapse; width: 100%; margin: 12pt 0; font-size: 12pt; }
+th, td { border: 1px solid #999999; padding: 6pt 8pt; text-align: left; vertical-align: top; }
+th { background-color: #eef2ff; }
+img.screen { width: 100%; border: 1px solid #cccccc; margin: 8pt 0 2pt 0; }
+p.caption { font-size: 12pt; font-style: italic; color: #555555; text-align: center; margin: 0 0 14pt 0; }
+.cover { text-align: center; padding-top: 120pt; }
+.cover h1 { border: none; font-size: 30pt; page-break-before: auto; }
+.cover p { font-size: 16pt; }
+ul, ol { margin: 6pt 0; }
+li { margin-bottom: 4pt; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+<h1>EventSphere</h1>
+<p><b>Online Event &amp; Venue Booking Platform</b></p>
+<p>Complete Project Documentation</p>
+<p>BCA Semester V — Project Report</p>
+<p>Version 1.0.3 | October 2026</p>
+<p>Java 25 · Jakarta Servlet 6.1 · JSP 4.0 · PostgreSQL 18 · Apache Tomcat 11</p>
+</div>
+
+<h1>1. Problem Statement</h1>
+<h2>1.1 Background of the Problem</h2>
+<ul>
+<li>Every month, hundreds of weddings, conferences, exhibitions, parties, and seminars are organized, and each one begins with finding and booking a suitable venue.</li>
+<li>Despite its importance, venue discovery and reservation remain largely manual, phone-driven, and fragmented, especially for customers without contacts in the event industry.</li>
+</ul>
+<h2>1.2 Scattered and Unreliable Venue Information</h2>
+<ul>
+<li>Capacity, hourly rates, amenities, event-type suitability, and photographs are scattered across pamphlets, advertisements, and phone calls.</li>
+<li>Much of this information is incomplete or outdated.</li>
+<li>Comparing even two or three venues takes days of physical visits and follow-ups.</li>
+<li>Good venues stay invisible simply because they are never discovered.</li>
+</ul>
+<h2>1.3 No Trustworthy Availability Record</h2>
+<ul>
+<li>Enquiries live in separate registers, diaries, spreadsheets, and chat messages.</li>
+<li>The same venue/date is frequently promised to more than one party.</li>
+<li>Double-bookings surface at the last moment, forcing cancellations and costly emergency re-arrangements.</li>
+<li>Neither customer nor administrator can verify at any moment whether a venue is truly free.</li>
+</ul>
+<h2>1.4 Non-Transparent Pricing</h2>
+<ul>
+<li>Customers receive partial quotes over the phone.</li>
+<li>The real cost (hourly rate × duration, plus decoration, catering, and service charges) appears only in the final bill.</li>
+<li>The expectation–reality gap causes disputes, mistrust, and cancelled events.</li>
+</ul>
+<h2>1.5 No Dependable Quality Signals</h2>
+<ul>
+<li>Advertisement claims cannot be distinguished from genuine service quality.</li>
+<li>Existing reviews are anonymous, unlinked to real bookings, and open to manipulation.</li>
+<li>Venues receive no honest, actionable feedback; customers decide blindly.</li>
+</ul>
+<h2>1.6 Unmanageable Administration</h2>
+<ul>
+<li>Booking requests, approvals, customer/host records, bills, discounts, and complaints are handled through disconnected manual steps.</li>
+<li>There is no audit trail, so mistakes cannot be traced and misuse cannot be detected.</li>
+<li>Approvals, rejections, and replies depend on personal follow-up; important messages are missed or delayed.</li>
+<li>Peak-season demand cannot be analyzed from scattered records.</li>
+</ul>
+<h2>1.7 The Need</h2>
+<ul>
+<li>Slow and risky for customers, reputation-damaging for owners, unmanageable for administrators.</li>
+<li>A single centralized computerized platform combining verified venues, availability records, transparent pricing, booking-linked reviews, and controlled administration — the problem EventSphere is designed to solve.</li>
+</ul>
+
+<h1>2. Objectives of the Project</h1>
+<ol>
+<li>To develop a centralized web-based platform that brings venue listings, availability, bookings, reviews, bills, and administration together in a single system.</li>
+<li>To provide searchable and filterable venue listings with verified details such as capacity, hourly rates, amenities, event-type suitability, and photographs.</li>
+<li>To maintain a single, reliable record of venue availability through a booking calendar, so the same venue and date can never be promised to two parties.</li>
+<li>To enforce availability checks both at the time of booking and at the time of admin approval, eliminating last-moment double-bookings and cancellations.</li>
+<li>To display transparent, server-calculated pricing (hourly rate × duration) to the customer before booking confirmation, removing billing disputes.</li>
+<li>To implement a secure, role-based login system for customers, hosts, and administrators with encrypted password storage and session protection.</li>
+<li>To give administrators complete control over venues, bookings, customers, hosts, promo codes, bills, feedback, notifications, and reports, supported by an audit trail.</li>
+<li>To enable hosts to list and manage their own venues, upload photos, and track bookings for their properties.</li>
+<li>To allow reviews and ratings only against completed/approved bookings, and to let hosts reply, so feedback stays genuine and actionable.</li>
+<li>To automate communication through in-app notifications for approvals, rejections, replies, and booking updates.</li>
+<li>To provide bills for every booking along with booking confirmation and printable receipts.</li>
+<li>To protect the system through input validation, prepared statements, output escaping, and rate-limited authentication endpoints.</li>
+</ol>
+
+<h1>3. Scope of the Project</h1>
+<h2>3.1 Functional Scope</h2>
+<ul>
+<li>Venue management: adding, updating, photographing, activating, and deactivating venues with capacity, pricing, amenities, and event-type details.</li>
+<li>Venue discovery: keyword search with filters for event type, location, capacity, and budget, plus ratings and availability calendar.</li>
+<li>Booking management: single and multi-venue bookings, pending/approved/rejected/cancelled lifecycles, booking modification, and cancellation.</li>
+<li>Approval workflow: administrator approval or rejection of every booking with customer notifications.</li>
+<li>Billing: server-calculated totals, promo-code discounts, HTML bills, and PDF receipts.</li>
+<li>Feedback system: ratings, comments, and photos restricted to approved bookings, with host replies.</li>
+<li>User management: registration, role-based login (customer/host/admin), password reset, and "remember me" sessions.</li>
+<li>Notifications: in-app alerts for booking decisions, replies, and system messages.</li>
+<li>Reports and audit: booking statistics, revenue summaries, popular venues, and a complete admin audit log.</li>
+</ul>
+<h2>3.2 User Scope</h2>
+<ul>
+<li>Customers: browse, book, pay-track, review, and manage their own events and bookings.</li>
+<li>Hosts: manage only their own venues and view bookings made on them.</li>
+<li>Administrators: full control over all entities, approvals, analytics, and audit.</li>
+</ul>
+<h2>3.3 Technical Scope</h2>
+<ul>
+<li>Three-tier web application: JSP frontend, Java servlet/controller business layer, PostgreSQL database.</li>
+<li>Runs on Apache Tomcat with a HikariCP connection pool; builds with Maven into a deployable WAR.</li>
+<li>Security controls: BCrypt hashing, session fixation protection, prepared statements, output escaping, and rate limiting.</li>
+</ul>
+<h2>3.4 Out of Scope (Future Enhancements)</h2>
+<ul>
+<li>Online payment gateway integration.</li>
+<li>Mobile application and its API.</li>
+<li>Multi-language support.</li>
+<li>Caching and advanced analytics beyond the current reports.</li>
+</ul>
+
+<h1>4. Modules of the Project</h1>
+<h2>4.1 Authentication and Authorization Module</h2>
+<ul>
+<li>Role-based login and registration for customers, hosts, and administrators.</li>
+<li>BCrypt password hashing, session management with fixation protection, and "remember me" login.</li>
+<li>Self-service password reset through secure single-use tokens.</li>
+<li>Authorization filters restricting every dashboard and action strictly by role.</li>
+</ul>
+<h2>4.2 Venue Management Module</h2>
+<ul>
+<li>Venue creation, editing, photo upload, activation, and deactivation by admins and hosts.</li>
+<li>Venue search with filters for event type, location, capacity, and budget, with pagination.</li>
+<li>Venue details page with photo gallery, availability calendar, ratings, and reviews.</li>
+</ul>
+<h2>4.3 Booking Management Module</h2>
+<ul>
+<li>Single and multi-venue bookings with event details, date, time slots, and guest count.</li>
+<li>Live price estimation and server-side total calculation with promo-code support.</li>
+<li>Pending/approved/rejected/cancelled lifecycle with admin approval workflow.</li>
+<li>Booking modification and cancellation with availability re-validation.</li>
+</ul>
+<h2>4.4 Billing Module</h2>
+<ul>
+<li>Automatic bill generation for every approved booking.</li>
+<li>HTML bills with printable and PDF formats.</li>
+<li>Promo-code discounts applied transparently before confirmation.</li>
+</ul>
+<h2>4.5 Feedback and Rating Module</h2>
+<ul>
+<li>Ratings, comments, and review photos restricted to approved bookings only.</li>
+<li>Average rating and review counts on venue cards and details.</li>
+<li>Host replies to customer reviews and admin feedback moderation.</li>
+</ul>
+<h2>4.6 Notification Module</h2>
+<ul>
+<li>In-app notifications for booking approvals, rejections, replies, and system messages.</li>
+<li>Unread counts, mark-as-read controls, and role-specific inboxes.</li>
+</ul>
+<h2>4.7 Promo Code Module</h2>
+<ul>
+<li>Creation, activation, and expiry control of discount codes by administrators.</li>
+<li>Automatic validation and discount application during booking.</li>
+</ul>
+<h2>4.8 User Management Module</h2>
+<ul>
+<li>Customer, host, and administrator account administration.</li>
+<li>Host onboarding by admins, profile handling, and account removal with safeguards.</li>
+</ul>
+<h2>4.9 Reports, Analytics, and Audit Module</h2>
+<ul>
+<li>Booking statistics, revenue summaries, popular venues, and monthly trends.</li>
+<li>Complete audit log of admin actions with timestamps for traceability.</li>
+</ul>
+<h2>4.10 Contact and Support Module</h2>
+<ul>
+<li>Contact form with server-side validation and admin-side message handling.</li>
+<li>Error pages, flash success/error messaging, and toast notifications across the site.</li>
+</ul>
+<h1>5. System Architecture</h1>
+<h2>5.1 Architectural Overview</h2>
+<ul>
+<li>Three-tier architecture with server-rendered presentation: (i) Presentation — JSP pages with HTML, CSS, vanilla JavaScript; (ii) Application — Jakarta servlets, controllers, filters, services, DAOs on Apache Tomcat 11; (iii) Data — PostgreSQL 18 over JDBC with a HikariCP pool.</li>
+<li>Informal Model-View-Controller: JSPs render views; servlets/controllers enforce authorization; models carry data; DAOs isolate SQL. No ORM and no frontend framework.</li>
+</ul>
+<h2>5.2 Presentation Tier</h2>
+<ul>
+<li>Thirty JSPs by audience: 9 public, 6 customer, 10 admin, 3 host, 2 error pages.</li>
+<li>One shared stylesheet (~75 KB) and one shared script (~21 KB); progressive-enhancement scripts for search, modal, toasts, and lightbox.</li>
+<li>The browser never contacts the database; it only requests servlet URLs and renders HTML.</li>
+</ul>
+<h2>5.3 Application Tier</h2>
+<ul>
+<li>25+ controllers/servlets: public handlers (login, logout, register, venues, contact, feedback, password reset, notifications) and business controllers (booking, billing, PDF bills, admin and host management).</li>
+<li>Filters guard every protected URL: authentication, role checks, "remember me", rate limiting on auth endpoints, CSRF validation on state-changing forms.</li>
+<li>Utilities: DBUtil (single HikariCP pool, env-based config), MailUtil (SMTP point, off by default), TokenUtil, EscapeUtil (XSS-safe output), FormatUtil.</li>
+<li>12 DAO classes use prepared statements and try-with-resources; multi-table booking writes are transactional.</li>
+</ul>
+<h2>5.4 Typical Request Flows</h2>
+<ul>
+<li><i>Browse and book:</i> filter venues → details with availability calendar → booking form with live estimate → BookingServlet re-validates, checks overlaps transactionally, stores event plus booking atomically.</li>
+<li><i>Approve:</i> admin confirms in the styled modal → status flips, audit row written, customer notification queued.</li>
+<li><i>Review:</i> only approved bookings for that customer and venue are offered; submission stores rating, comment, and optional photo.</li>
+</ul>
+<h2>5.5 Data, Security, and Deployment</h2>
+<ul>
+<li>Thirteen tables in one <i>eventsphere</i> database: identity (admin/customer/host users, BCrypt hashes), catalogue (venues, events), transactions (bookings, bills), engagement (feedback, notifications, promocodes), security (password resets, login tokens), governance (audit logs).</li>
+<li>BCrypt cost-12 passwords; SHA-256 hashed single-use tokens; fixation-protected HttpOnly sessions (30 min); identity always re-read from session; rate-limited auth endpoints.</li>
+<li>Maven builds one <i>EventSphere.war</i> (Java 25) deployed to Tomcat 11 with JDBC to PostgreSQL; configuration via environment variables; no external services required.</li>
+</ul>
+
+<h1>6. Database Design</h1>
+<h2>6.1 Design Overview</h2>
+<ul>
+<li>Single PostgreSQL database, surrogate SERIAL keys, human-readable business keys (booking_number, bill_number, promo code), DECIMAL(10,2) money, defaulted timestamps, role-split identity tables.</li>
+</ul>
+<h2>6.2 Tables (13)</h2>
+<ul>
+<li><i>Identity:</i> admin_users, customer_users, host_users (id, full_name, email UNIQUE, password_hash BCrypt-12, timestamps).</li>
+<li><i>Catalogue:</i> venues (capacity CHECK &gt; 0, rate CHECK ≥ 0, status AVAILABLE/MAINTENANCE/INACTIVE, owner links with SET NULL); events (date/time/guests, venue link, DRAFT default).</li>
+<li><i>Transactions:</i> bookings (unique number, event+venue+customer CASCADE links, amounts, promo link SET NULL, PENDING/APPROVED/REJECTED/CANCELLED); bills (one-to-one with bookings, subtotal/advance/balance, ISSUED/PAID/CANCELLED).</li>
+<li><i>Engagement:</i> feedback (rating 1–5, comment, photo, admin reply; one review per booking via partial unique index); notifications (role inbox, read flags); promocodes (1–90% off, usage counters).</li>
+<li><i>Security:</i> password_resets and login_tokens (hashed single-use/expiring tokens); <i>governance:</i> audit_logs (actor, action, target, detail, time).</li>
+<li>22 indexes (emails, statuses, joins, tokens, inbox triple, audit ordering); CHECK constraints reject invalid data at the database itself.</li>
+</ul>
+
+<h1>7. Frontend Implementation</h1>
+<h2>7.1 Principles</h2>
+<ul>
+<li>Plain HTML5/CSS3/vanilla JS, no frameworks or build step; server-rendered pages with progressive enhancement; escaped output, POST for state changes, class-based styling with page namespaces (dash-*, cust-*, cal-*).</li>
+</ul>
+<h2>7.2 Pages and Styling</h2>
+<ul>
+<li>30 JSPs: public home/search/details/booking/auth flows; customer dashboard, history, bills, feedback, inbox; admin dashboards, queues, entities, analytics; host views; branded error pages.</li>
+<li>Single stylesheet (~75 KB): tokens, navbar, buttons, forms, alerts, cards, grids, hero, venue cards, dashboards, bills, calendar, toasts, confirm modal, lightbox, skeletons, five breakpoints, focus/reduced-motion support.</li>
+<li>Single script (~21 KB): submit-time plus inline validation with aria-invalid, live INR price estimator, AJAX venue search with skeletons and history state (full-navigation fallback), in-page confirm modal and toasts replacing native dialogs, lightbox, multi-booking, loading spinners, date clamping.</li>
+<li>Vector brand logo and SVG favicon (original PNG kept for print); every destructive click guarded by the styled modal.</li>
+</ul>
+
+<h1>8. Database Implementation</h1>
+<ul>
+<li>Handwritten JDBC + DAO pattern; all connections from one lazy double-checked HikariCP singleton (eventsphere-pool: max 10, min-idle 2, 10 s timeout), explicit PostgreSQL driver registration, env-overridable URL/user/password.</li>
+<li>Parameterized statements and try-with-resources throughout; atomic booking+event+bill writes; approval re-checks overlaps, then flips status, audits, and notifies as one unit; CASCADE deletes keep the graph clean.</li>
+<li>Schema ships as one ordered <i>database.sql</i> (drops, 13 tables, late promo FK, indexes, BCrypt/SHA-256 seeds); fresh setup is two commands plus verification. Backups via pg_dump; health is pool log line + table count + login round-trip.</li>
+</ul>
+<h1>9. Test Cases</h1>
+<h2>9.1 Automated Suite (JUnit 5 — 21 tests, all passing)</h2>
+<table>
+<tr><th>ID</th><th>Class</th><th>Coverage</th><th>Result</th></tr>
+<tr><td>AT-01</td><td>BookingAvailabilityTest</td><td>Availability checks for validation</td><td>Pass</td></tr>
+<tr><td>AT-02…04</td><td>VenueTest</td><td>Construction, accessors, toString</td><td>Pass</td></tr>
+<tr><td>AT-05…07</td><td>EventTest</td><td>Construction, accessors, toString</td><td>Pass</td></tr>
+<tr><td>AT-08…10</td><td>UserTest</td><td>Construction, accessors, toString</td><td>Pass</td></tr>
+<tr><td>AT-11…14</td><td>FeedbackTest</td><td>Construction, rating 1–5 enforcement</td><td>Pass</td></tr>
+<tr><td>AT-15…17</td><td>BookingTest</td><td>Identity fields, accessors, summary</td><td>Pass</td></tr>
+<tr><td>AT-18…19</td><td>BookingWorkflowTest</td><td>Pending-only cancel; valid transitions</td><td>Pass</td></tr>
+<tr><td>AT-20…21</td><td>LoginPageFormTest</td><td>Login form validation</td><td>Pass</td></tr>
+</table>
+<h2>9.2 Functional Cases (manual highlights)</h2>
+<table>
+<tr><th>ID</th><th>Flow</th><th>Expected Result</th></tr>
+<tr><td>FT-01…03</td><td>Registration, duplicate, invalid input</td><td>Created / rejected-existing / field errors</td></tr>
+<tr><td>FT-04…08</td><td>Role logins, anonymous and cross-role access</td><td>Correct dashboards; 403 isolation</td></tr>
+<tr><td>FT-09…12</td><td>Browse, AJAX filters, details page</td><td>Correct subsets; calendar, reviews, lightbox render</td></tr>
+<tr><td>FT-13…15</td><td>Valid, past-date, and overlapping bookings</td><td>Created PENDING / blocked / blocked</td></tr>
+<tr><td>FT-16…18</td><td>Approve, reject, modal cancel</td><td>Status flips + audit + notice / no change</td></tr>
+<tr><td>FT-19…23</td><td>Cancel, edit, bill, valid/invalid promo</td><td>Updated; correct totals; counters increment</td></tr>
+<tr><td>FT-24…26</td><td>Review approved booking; no-booking; duplicate review</td><td>Saved / not offered / rejected</td></tr>
+<tr><td>FT-27…29</td><td>Notifications, password reset, error pages</td><td>Inbox + counts; single-use token; branded 404/500</td></tr>
+</table>
+<h2>9.3 Security Cases</h2>
+<ul>
+<li>SQL injection neutralized (prepared statements); XSS escaped; admin POSTs return 403 anonymously; sessions rotate on login; dumps hold hashes only; auth endpoints rate-limited; identity re-read from session.</li>
+</ul>
+
+<h1>10. Test Results (executed October 16, 2026)</h1>
+<ul>
+<li>Automated: 21/21 pass, BUILD SUCCESS. Live: registration, duplicate rejection, role logins, booking ES-2026-000015 (₹8000 = ₹2000×4h), past-date and overlap blocks, approval with audit + notification, 5-star review — all PASS; test data fully cleaned up afterward.</li>
+<li>All public/customer/admin pages HTTP 200 with no marker leakage; anonymous admin URLs correctly gated. Verdict: no defects open.</li>
+</ul>
+
+<h1>11. User Manual — Input Screens</h1>
+<p>Home search (type/guests/budget/date); contact form; role-tabbed login with remember-me; registration with confirm; forgot/reset password; venue filters with multi-select; conditional feedback form; booking form with live estimate; booking editor; admin/host venue forms; promo/host/admin creation; modal confirmations on every destructive click.</p>
+<img class="screen" src="screenshots/01-home-hero.png"><p class="caption">Fig 1 — Home hero with venue search</p>
+<img class="screen" src="screenshots/02-login.png"><p class="caption">Fig 2 — Role-based login</p>
+<img class="screen" src="screenshots/03-register.png"><p class="caption">Fig 3 — Registration form</p>
+<img class="screen" src="screenshots/04-forgot-password.png"><p class="caption">Fig 4 — Password reset request</p>
+<img class="screen" src="screenshots/05-venues-filter.png"><p class="caption">Fig 5 — Venue filters</p>
+<img class="screen" src="screenshots/06-venue-details.png"><p class="caption">Fig 6 — Venue details and booking entry</p>
+<img class="screen" src="screenshots/07-customer-dashboard.png"><p class="caption">Fig 7 — Customer dashboard</p>
+<img class="screen" src="screenshots/08-booking-form.png"><p class="caption">Fig 8 — Booking form</p>
+<img class="screen" src="screenshots/09-admin-dashboard.png"><p class="caption">Fig 9 — Admin dashboard</p>
+<img class="screen" src="screenshots/10-admin-venue-form.png"><p class="caption">Fig 10 — Venue creation form</p>
+
+<h1>12. Output Screens with Data</h1>
+<img class="screen" src="screenshots/11-output-admin-bookings.png"><p class="caption">Fig 11 — Booking register: 14 total (10 approved, 2 rejected, 2 cancelled)</p>
+<img class="screen" src="screenshots/12-output-admin-analytics.png"><p class="caption">Fig 12 — Analytics: ₹168025.00 billed, ₹129125.00 outstanding</p>
+<img class="screen" src="screenshots/13-output-admin-notifications.png"><p class="caption">Fig 13 — Admin notification inbox with approval requests</p>
+
+<h1>13. Data Reports (live, October 16, 2026)</h1>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Venues / customers / bookings</td><td>12 / 6 / 14 (10 approved, 2 rejected, 2 cancelled, 0 pending)</td></tr>
+<tr><td>Total billed / outstanding / average</td><td>₹168025.00 / ₹129125.00 / ₹12001.79</td></tr>
+<tr><td>Top venue revenue</td><td>Crystal Palace Banquet ₹52900.00; Emerald Convention Center ₹32375.00; Modern Conference Hall ₹24450.00</td></tr>
+<tr><td>Monthly trend</td><td>2026-10: 7 (₹95475) · 2026-11: 3 (₹36340) · 2026-12: 4 (₹36210)</td></tr>
+</table>
+<p>Sources: /admin/analytics.jsp, /admin/bookings.jsp, /admin/notifications.jsp; aggregates verified in psql (GROUP BY status, venue revenue join, monthly trend).</p>
+
+<h1>14. Project Summary</h1>
+<p>EventSphere is a complete, working Event &amp; Venue Booking Platform: three-tier Java web application (JSP, servlets/controllers, PostgreSQL) shipped as one WAR on Tomcat 11. Customers discover 12 verified venues, see live price estimates, and book online; admins approve through an audited workflow; hosts manage their venues; approved bookings yield bills and verified reviews. Verified October 16, 2026: 21/21 tests pass, all pages HTTP 200 with role isolation, 14 bookings (10 approved), ₹168025.00 billed. Status: complete, tested, deployed, and documented.</p>
+
+<h1>15. Project Structure and Technologies</h1>
+<table>
+<tr><th>Layer</th><th>Technology</th><th>Contents</th></tr>
+<tr><td>Language/build</td><td>Java 25, Maven 3.9</td><td>53 classes; EventSphere.war (~12 MB)</td></tr>
+<tr><td>Web/server</td><td>Jakarta Servlet 6.1, JSP 4.0; Tomcat 11</td><td>~25 handlers; 30 JSPs; filters; web.xml</td></tr>
+<tr><td>Data</td><td>PostgreSQL 18, JDBC, HikariCP 5.1.0</td><td>13 tables; 22 indexes; database.sql</td></tr>
+<tr><td>Security</td><td>BCrypt-12, SHA-256 tokens</td><td>Role tables; rate limits; CSRF; escaping</td></tr>
+<tr><td>Docs/PDF/tests</td><td>OpenPDF 1.3.30, JUnit 5.10.2</td><td>Invoice PDFs; 21 automated tests</td></tr>
+<tr><td>Client</td><td>HTML5, CSS3, vanilla JS</td><td>75 KB CSS; 21 KB JS; SVG branding; no frameworks</td></tr>
+</table>
+
+</body>
+</html>

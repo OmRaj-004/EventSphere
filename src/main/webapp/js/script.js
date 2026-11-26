@@ -69,6 +69,9 @@ function showToast(message, type) {
     const toast = document.createElement('div');
     toast.className = 'toast ' + (type === 'error' ? 'toast-error' : 'toast-success');
     toast.textContent = message;
+    if (type === 'error' && [...container.children].some(t => t.textContent === message)) {
+        return;
+    }
     container.appendChild(toast);
     setTimeout(() => toast.classList.add('hide'), 4000);
     setTimeout(() => toast.remove(), 4500);
@@ -530,9 +533,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 esUpdatePriceEstimate();
             });
             input.addEventListener('change', esUpdatePriceEstimate);
-            input.addEventListener('blur', () => {
-                validateBookingForm(bookingForm);
-            });
+            // Full-form validation (and its error toast) runs only on submit.
+            // Validating every field on blur showed errors for fields the user
+            // had not reached yet and re-focused inputs, creating a blur loop.
         });
         esUpdatePriceEstimate();
     }

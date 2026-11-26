@@ -5,11 +5,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Login - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <!-- Navigation Bar -->
@@ -32,10 +33,11 @@
                 </div>
             </div>
         </nav>
+        <main>
         <!-- Login Forms -->
-        <section style="padding: 3rem 2rem; background-color: var(--gray-lighter);">
+        <section class="login-page">
             <div class="container">
-                <div class="login-grid" style="display: grid; grid-template-columns: repeat(3, minmax(260px, 1fr)); gap: 2rem; align-items: stretch; max-width: 1200px; margin: 0 auto;">
+                <div class="login-grid">
                     <div class="card">
                         <h2 class="card-header">
                             Admin Login
@@ -69,7 +71,7 @@
                                     Remember me for 30 days
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Admin Login
                             </button>
                         </form>
@@ -107,7 +109,7 @@
                                     Remember me for 30 days
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Customer Login
                             </button>
                         </form>
@@ -145,13 +147,13 @@
                                     Remember me for 30 days
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Host Login
                             </button>
                         </form>
                     </div>
                 </div>
-                <div style="max-width: 500px; margin: 1rem auto 0;">
+                <div class="login-footer">
                     <!-- Error Message -->
                     <%
                         String error = (String) request.getAttribute("error");
@@ -169,17 +171,17 @@
                             <%= resetOk %>
                         </div>
                     <% } %>
-                    <div id="error-message" style="display: none;" class="alert alert-error">
+                    <div id="error-message" class="alert alert-error hidden">
                     </div>
-                    <div style="margin-top: 1.5rem; text-align: center;">
+                    <div class="login-links">
                         <p>
                             Don't have an account?
-                            <a href="${pageContext.request.contextPath}/register" style="color: var(--primary-color); font-weight: bold;">
+                            <a href="${pageContext.request.contextPath}/register" class="login-link register-link">
                                 Register here
                             </a>
                         </p>
-                        <p style="margin-top: 0.5rem;">
-                            <a href="${pageContext.request.contextPath}/forgot-password" style="color: var(--text-light); font-size: 0.9rem;">
+                        <p class="login-link-text">
+                            <a href="${pageContext.request.contextPath}/forgot-password" class="login-link forgot-link">
                                 Forgot password? Reset it here
                             </a>
                         </p>
@@ -188,7 +190,8 @@
             </div>
         </section>
         <!-- Footer -->
-        <footer class="footer" style="margin-top: 3rem;">
+                </main>
+<footer class="footer footer-compact">
             <div class="footer-container">
                 <p>
                     &copy;
@@ -197,7 +200,7 @@
                 </p>
             </div>
         </footer>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

@@ -6,8 +6,9 @@ List<User> admins = userDAO.getAllAdmins();
 Object selfId = session.getAttribute("userId");
 String okMsg = (String) session.getAttribute("adminAdminSuccess"); session.removeAttribute("adminAdminSuccess");
 String errMsg = (String) session.getAttribute("adminAdminError"); session.removeAttribute("adminAdminError"); %>
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admins - EventSphere</title><link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg"><link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5"></head>
-<body class="bk-page"><nav class="navbar"><div class="navbar-container"><a href="${pageContext.request.contextPath}/" class="navbar-brand"><img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo"></a><div class="auth-buttons"><a href="${pageContext.request.contextPath}/" class="btn btn-outline">Home</a><a href="${pageContext.request.contextPath}/admin/dashboard.jsp" class="btn btn-outline">Dashboard</a><a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">Analytics</a><form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;"><button type="submit" class="btn btn-primary">Logout</button></form></div></div></nav>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue."><title>Admins - EventSphere</title><link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg"><link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11"></head>
+<body class="bk-page"><nav class="navbar"><div class="navbar-container"><a href="${pageContext.request.contextPath}/" class="navbar-brand"><img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo"></a><div class="auth-buttons"><a href="${pageContext.request.contextPath}/" class="btn btn-outline">Home</a><a href="${pageContext.request.contextPath}/admin/dashboard.jsp" class="btn btn-outline">Dashboard</a><a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">Analytics</a><form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form"><button type="submit" class="btn btn-primary">Logout</button></form></div></div></nav>
 <main class="container bk-wrap">
 <div class="bk-head"><div><p class="bk-eyebrow">User management</p><h1>Administrators</h1><p class="bk-sub">All admins are equal. Nobody can remove their own account or the last admin.</p></div></div>
 <% if (okMsg != null) { %><div class="bk-toast bk-toast-success"><%= EscapeUtil.e(okMsg) %></div><% } else if (errMsg != null) { %><div class="bk-toast bk-toast-error"><%= EscapeUtil.e(errMsg) %></div><% } %>
@@ -24,13 +25,13 @@ String errMsg = (String) session.getAttribute("adminAdminError"); session.remove
 <% if (admins.isEmpty()) { %><div class="alert alert-info">No admins found.</div><% } else { %>
 <div class="bk-table-scroll"><table class="bk-table"><thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Action</th></tr></thead><tbody>
 <% for (User ad : admins) { boolean isSelf = selfId instanceof Integer && ((Integer) selfId) == ad.getId(); %>
-<tr><td><strong><%= EscapeUtil.e(ad.getFullName()) %></strong><%= isSelf ? " (you)" : "" %></td><td><%= EscapeUtil.e(ad.getEmail()) %></td><td style="white-space:nowrap;"><%= ad.getCreatedAt() == null ? "-" : ad.getCreatedAt().toLocalDate() %></td>
-<td><% if (!isSelf) { %><form method="post" action="${pageContext.request.contextPath}/admin/admins" onsubmit="return confirmAction('Remove this admin? They will lose all admin access immediately.')" style="display:inline;"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<%= ad.getId() %>"><button class="btn btn-danger btn-sm" type="submit">Remove</button></form><% } else { %><span class="bk-muted">current login</span><% } %></td></tr>
+<tr><td><strong><%= EscapeUtil.e(ad.getFullName()) %></strong><%= isSelf ? " (you)" : "" %></td><td><%= EscapeUtil.e(ad.getEmail()) %></td><td class="nowrap"><%= ad.getCreatedAt() == null ? "-" : ad.getCreatedAt().toLocalDate() %></td>
+<td><% if (!isSelf) { %><form method="post" action="${pageContext.request.contextPath}/admin/admins" onsubmit="return confirmAction('Remove this admin? They will lose all admin access immediately.')" class="inline-form"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<%= ad.getId() %>"><button class="btn btn-danger btn-sm" type="submit">Remove</button></form><% } else { %><span class="bk-muted">current login</span><% } %></td></tr>
 <% } %>
 </tbody></table></div>
 <% } %>
 </section>
 </div>
 </main>
-<script src="${pageContext.request.contextPath}/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/js/script.js?v=12"></script>
 </body></html>

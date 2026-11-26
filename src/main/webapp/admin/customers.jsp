@@ -15,11 +15,12 @@ UserDAO userDAO = new UserDAO();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Customers - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="bk-page">
         <nav class="navbar">
@@ -37,7 +38,7 @@ UserDAO userDAO = new UserDAO();
                     <a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">
                         Analytics
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -83,12 +84,12 @@ UserDAO userDAO = new UserDAO();
                     <div class="bk-table-scroll">
                         <table class="bk-table" id="custTable">
                             <colgroup>
-                                <col style="width:24%">
-                                <col style="width:26%">
-                                <col style="width:10%">
-                                <col style="width:13%">
-                                <col style="width:13%">
-                                <col style="width:14%">
+                                <col class="col-w24">
+                                <col class="col-w26">
+                                <col class="col-w10">
+                                <col class="col-w13">
+                                <col class="col-w13">
+                                <col class="col-w14">
                             </colgroup>
                             <thead>
                                 <tr>
@@ -139,7 +140,7 @@ UserDAO userDAO = new UserDAO();
                                         <%= cu.getCreatedAt() == null ? "-" : cu.getCreatedAt().toLocalDate() %>
                                     </td>
                                     <td>
-                                        <form method="post" action="${pageContext.request.contextPath}/admin/customers" onsubmit="return confirmAction('Remove this customer? All their bookings, bills and reviews will be deleted too.')" style="display:inline;">
+                                        <form method="post" action="${pageContext.request.contextPath}/admin/customers" onsubmit="return confirmAction('Remove this customer? All their bookings, bills and reviews will be deleted too.')" class="inline-form">
                                             <input type="hidden" name="id" value="<%= cu.getId() %>">
                                             <button class="btn btn-danger btn-sm" type="submit">
                                                 Remove

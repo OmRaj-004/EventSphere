@@ -14,11 +14,12 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Manage Venues - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="vm-page">
         <nav class="navbar">
@@ -33,7 +34,7 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
                     <a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">
                         Analytics
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -137,7 +138,7 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
                                         <%= com.eventsphere.util.EscapeUtil.e(venue.getEventType()) %>
                                     </span>
                                     <span class="vm-cap">
-                                        &#128101;
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                         <%= venue.getMaxCapacity() %>
                                     </span>
                                 </div>
@@ -145,7 +146,7 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
                                     <%= com.eventsphere.util.EscapeUtil.e(venue.getName()) %>
                                 </h2>
                                 <p class="vm-loc">
-                                    &#128205;
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                     <%= com.eventsphere.util.EscapeUtil.e(venue.getLocation()) %>
                                 </p>
                                 <p class="vm-amen">
@@ -180,7 +181,7 @@ List<Venue> venues = new VenueDAO().getVenuesByAdmin((Integer) session.getAttrib
                 </div>
             <% } %>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js?v=5">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
         <script>
             var q=document.getElementById('vmSearch'),ft=document.getElementById('vmType'),fs=document.getElementById('vmStatus'),so=document.getElementById('vmSort'),grid=document.getElementById('vmGrid');

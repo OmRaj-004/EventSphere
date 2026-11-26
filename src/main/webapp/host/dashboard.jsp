@@ -30,11 +30,12 @@ long hostUnread = notificationDAO.unreadCount(host.getId(), "HOST");
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Host Dashboard - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="host-page">
         <nav class="navbar">
@@ -43,7 +44,7 @@ long hostUnread = notificationDAO.unreadCount(host.getId(), "HOST");
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
                 </a>
                 <div class="auth-buttons">
-                    <span style="color:#cbd5e1;margin-right:0.5rem;">
+                    <span class="nav-welcome">
                         Hi,
                         <%= com.eventsphere.util.EscapeUtil.e(host.getFullName()) %>
                     </span>
@@ -58,7 +59,7 @@ long hostUnread = notificationDAO.unreadCount(host.getId(), "HOST");
                             )
                         <% } %>
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>

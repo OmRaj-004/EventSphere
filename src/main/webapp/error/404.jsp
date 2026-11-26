@@ -4,11 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Page Not Found - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -18,23 +19,25 @@
                 </a>
             </div>
         </nav>
-        <section style="padding: 3rem 2rem; text-align: center;">
+        <main>
+        <section class="error-page">
             <div class="container">
-                <h1 style="font-size: 3rem; color: var(--danger-color); margin-bottom: 1rem;">
+                <h1 class="error-code">
                     404
                 </h1>
                 <h2>
                     Page Not Found
                 </h2>
-                <p style="color: var(--text-light); margin: 1rem 0;">
+                <p class="text-muted-small">
                     The page you are looking for could not be found.
                 </p>
-                <a href="${pageContext.request.contextPath}/" class="btn btn-primary" style="margin-top: 1rem;">
+                <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-block">
                     Back to Home
                 </a>
             </div>
         </section>
-        <footer class="footer" style="margin-top: 3rem;">
+                </main>
+<footer class="footer footer-compact">
             <div class="footer-container">
                 <p>
                     &copy;

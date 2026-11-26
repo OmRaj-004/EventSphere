@@ -12,13 +12,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Book
             <%= venue.getName() %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -33,7 +34,7 @@
                     <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline">
                         My Bookings
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display: inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -41,7 +42,7 @@
                 </div>
             </div>
         </nav>
-        <main id="main" class="container" style="padding-top:2rem;">
+        <main id="main" class="container booking-page">
             <h1>
                 Book
                 <%= EscapeUtil.e(venue.getName()) %>
@@ -126,7 +127,7 @@
                         <label for="promoCode">
                             Promo code (optional)
                         </label>
-                        <input id="promoCode" name="promoCode" maxlength="30" placeholder="e.g. WELCOME10" style="text-transform:uppercase">
+                        <input id="promoCode" name="promoCode" maxlength="30" placeholder="e.g. WELCOME10" class="uppercase-input">
                     </div>
                 </div>
                 <div class="form-group">
@@ -143,7 +144,7 @@
                 </button>
             </form>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

@@ -23,13 +23,14 @@ Bill bill = (Bill) request.getAttribute("bill");
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Bill
             <%= bill == null ? booking.getBookingNumber() : bill.getBillNumber() %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="bill-page">
         <nav class="navbar no-print">
@@ -41,7 +42,7 @@ Bill bill = (Bill) request.getAttribute("bill");
                     <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline">
                         My Bookings
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -58,7 +59,7 @@ Bill bill = (Bill) request.getAttribute("bill");
                     <a href="${pageContext.request.contextPath}/bill.pdf?id=<%= booking.getId() %>" class="btn btn-outline">
                         Download PDF
                     </a>
-                    <button class="btn btn-primary" type="button" onclick="window.print()" style="margin-left:0.5rem;">
+                    <button class="btn btn-primary btn-ml" type="button" onclick="window.print()">
                         Print
                     </button>
                 </span>
@@ -84,7 +85,7 @@ Bill bill = (Bill) request.getAttribute("bill");
                                 <%= bill == null ? booking.getBookingNumber() : bill.getBillNumber() %>
                             </strong>
                         </p>
-                        <p style="font-size:0.85rem;">
+                        <p class="text-muted-small">
                             Booking ref:
                             <%= booking.getBookingNumber() %>
                             <% if (bill != null && bill.getCreatedAt() != null) { %>

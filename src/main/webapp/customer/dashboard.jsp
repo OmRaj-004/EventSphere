@@ -30,11 +30,12 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             My Bookings - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="cust-page">
         <nav class="navbar">
@@ -43,7 +44,7 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
                 </a>
                 <div class="auth-buttons">
-                    <span style="color:#cbd5e1;margin-right:0.5rem;">
+                    <span class="nav-welcome">
                         Hi,
                         <%= EscapeUtil.e(user.getFullName()) %>
                     </span>
@@ -67,7 +68,7 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
                             )
                         <% } %>
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -115,7 +116,7 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
             <section class="cust-stats">
                 <button type="button" class="cust-stat" data-status="">
                     <span class="cust-stat-icon cust-bg-indigo">
-                        &#128179;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                     </span>
                     <span class="cust-stat-text">
                         <strong>
@@ -128,7 +129,7 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
                 </button>
                 <button type="button" class="cust-stat" data-status="PENDING">
                     <span class="cust-stat-icon cust-bg-amber">
-                        &#9201;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </span>
                     <span class="cust-stat-text">
                         <strong>
@@ -333,14 +334,14 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
                         <ul class="cust-upcoming-meta">
                             <li>
                                 <span>
-                                    &#128197;
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                                 </span>
                                 <%= upcoming.getBookingDate() %>
                             </li>
                             <% if (upcomingEvent != null) { %>
                                 <li>
                                     <span>
-                                        &#128101;
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                     </span>
                                     <%= upcomingEvent.getExpectedGuests() %>
                                     guests
@@ -390,7 +391,7 @@ Event upcomingEvent = upcoming == null ? null : eventDAO.getEventById(upcoming.g
             </aside>
         </div>
     </main>
-    <script src="${pageContext.request.contextPath}/js/script.js?v=5">
+    <script src="${pageContext.request.contextPath}/js/script.js?v=12">
     </script>
     <script>
         var pills=document.querySelectorAll('.cust-filter'),cards=document.querySelectorAll('.cust-stat'),search=document.getElementById('custSearch');

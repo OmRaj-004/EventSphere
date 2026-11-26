@@ -10,11 +10,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Browse Venues - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <!-- Navigation Bar -->
@@ -41,7 +42,7 @@
                         Object navRole = session.getAttribute("userRole");
                         if (user != null) {
                     %>
-                        <span style="color: white; margin-right: 1rem;">
+                        <span class="nav-welcome">
                             Welcome,
                             <%= EscapeUtil.e(session.getAttribute("userName")) %>
                         </span>
@@ -58,7 +59,7 @@
                                 My Bookings
                             </a>
                         <% } %>
-                        <form action="${pageContext.request.contextPath}/logout" method="post" style="display: inline;">
+                        <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                             <button type="submit" class="btn btn-primary">
                                 Logout
                             </button>
@@ -74,13 +75,14 @@
                 </div>
             </div>
         </nav>
+        <main>
         <!-- Page Content -->
-        <section id="main" style="padding: 2rem;">
+        <section id="main" class="main-section">
             <div class="container">
                 <h2>
                     Available Venues
                 </h2>
-                <div class="search-form" style="margin-bottom: 2rem;">
+                <div class="search-form search-form-compact">
                     <form id="venueFilterForm" action="${pageContext.request.contextPath}/venues">
                         <div class="search-form-row">
                             <div class="form-group">
@@ -121,7 +123,7 @@
                         <button type="submit" class="btn btn-primary">
                             Filter
                         </button>
-                        <button type="button" class="btn btn-outline" onclick="clearFilters()" style="margin-left: 1rem;">
+                        <button type="button" class="btn btn-outline clear-filters-btn" onclick="clearFilters()">
                             Clear Filters
                         </button>
                     </form>
@@ -131,7 +133,7 @@
                     List<Venue> venues = (List<Venue>) request.getAttribute("venues");
                     if (venues != null && !venues.isEmpty()) {
                 %>
-                    <form id="multiBookForm" method="get" action="${pageContext.request.contextPath}/booking" style="margin-bottom: 1rem;">
+                    <form id="multiBookForm" method="get" action="${pageContext.request.contextPath}/booking" class="multi-book-form">
                         <input type="hidden" name="venueIds" id="multiVenueIds" value="">
                         <button type="submit" id="multiBookBtn" class="btn btn-secondary" style="display: none;" onclick="return submitMultiBooking(event)">
                             Book Selected Together
@@ -150,7 +152,7 @@
                                     <%= EscapeUtil.e(venue.getName()) %>
                                 </div>
                                 <div class="venue-location">
-                                    📍
+                                    <svg class="venue-pin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                     <%= EscapeUtil.e(venue.getLocation()) %>
                                 </div>
                                 <% if (ratingCount > 0) { %>
@@ -178,7 +180,7 @@
                                     <%= String.format("%.2f", venue.getHourlyRate()) %>
                                     /hour
                                 </div>
-                                <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                                <div class="venue-capacity">
                                     Capacity:
                                     <%= venue.getMaxCapacity() %>
                                     guests
@@ -187,7 +189,7 @@
                                     <input type="checkbox" class="venue-pick-box" value="<%= venue.getId() %>" onchange="updateMultiBooking()">
                                     Select for multi-booking
                                 </label>
-                                <a href="${pageContext.request.contextPath}/venues?action=details&id=<%= venue.getId() %>" class="btn btn-primary" style="width: 100%;">
+                                <a href="${pageContext.request.contextPath}/venues?action=details&id=<%= venue.getId() %>" class="btn btn-primary btn-block">
                                     View Details
                                 </a>
                             </div>
@@ -233,6 +235,7 @@
     </div>
 </section>
 <!-- Footer -->
+        </main>
 <footer class="footer">
     <div class="footer-container">
         <p>
@@ -242,7 +245,7 @@
         </p>
     </div>
 </footer>
-<script src="${pageContext.request.contextPath}/js/script.js">
+<script src="${pageContext.request.contextPath}/js/script.js?v=12">
 </script>
 </body>
 </html>

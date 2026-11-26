@@ -23,12 +23,13 @@ Venue formVenue = (Venue) request.getAttribute("venue");
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             <%= isEdit ? "Edit Venue" : "Add Venue" %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="vf-page">
         <nav class="navbar">
@@ -46,7 +47,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                     <a href="${pageContext.request.contextPath}/admin/venues.jsp" class="btn btn-outline">
                         Back to Venues
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -72,7 +73,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                         Cancel
                     </a>
                     <% if (isEdit) { %>
-                        <form method="post" action="${pageContext.request.contextPath}/admin/venues" style="display:inline;" onsubmit="return confirmAction('Delete this venue? All its bookings will be affected.')">
+                        <form method="post" action="${pageContext.request.contextPath}/admin/venues" class="inline-form" onsubmit="return confirmAction('Delete this venue? All its bookings will be affected.')">
                             <input type="hidden" name="id" value="<%= formVenue.getId() %>">
                             <input type="hidden" name="action" value="delete">
                             <button class="btn btn-danger" type="submit">
@@ -82,7 +83,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                     <% } %>
                 </div>
             </div>
-            <div id="error-message" style="display:none;" class="alert alert-error">
+            <div id="error-message" class="alert alert-error hidden">
             </div>
             <form method="post" action="${pageContext.request.contextPath}/admin/venues" enctype="multipart/form-data" onsubmit="return validateVenueForm(this)">
                 <input type="hidden" name="id" value="<%= isEdit ? String.valueOf(formVenue.getId()) : "" %>">
@@ -268,8 +269,8 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                                     <%= vName.isEmpty() ? "Your venue name" : EscapeUtil.e(vName) %>
                                 </h3>
                                 <p class="vf-preview-loc" id="pvLoc">
-                                    &#128205;
-                                    <%= vLoc.isEmpty() ? "Venue location" : EscapeUtil.e(vLoc) %>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    <span id="pvLocText"><%= vLoc.isEmpty() ? "Venue location" : EscapeUtil.e(vLoc) %></span>
                                 </p>
                                 <p class="vf-preview-amen" id="pvAmen">
                                     <%= vAmen.isEmpty() ? "Amenities will appear here" : EscapeUtil.e(vAmen) %>
@@ -310,7 +311,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                 </div>
             </form>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js?v=5">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
         <script>
             var CTX='${pageContext.request.contextPath}', FALLBACK=CTX+'/images/homepage-banner.jpg';
@@ -327,7 +328,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
             var img=document.getElementById('imageUrl').value.trim()||'/images/homepage-banner.jpg';
             var status=document.getElementById('status').value||'AVAILABLE';
             document.getElementById('pvName').textContent=name;
-            document.getElementById('pvLoc').textContent='\uD83D\uDCCD '+loc;
+            document.getElementById('pvLocText').textContent=loc;
             document.getElementById('pvAmen').textContent=amen;
             document.getElementById('pvRate').textContent='\u20B9'+rate+'/hour';
             document.getElementById('pvCap').textContent='Cap: '+cap;

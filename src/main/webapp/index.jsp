@@ -9,11 +9,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             EventSphere - Event & Venue Booking Platform
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=3">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <!-- Navigation Bar -->
@@ -50,7 +51,7 @@
                         Object navRole = session.getAttribute("userRole");
                         if (user != null) {
                     %>
-                        <span style="color: white; margin-right: 1rem;">
+                        <span class="nav-welcome">
                             Welcome,
                             <%= EscapeUtil.e(session.getAttribute("userName")) %>
                         </span>
@@ -67,7 +68,7 @@
                                 My Bookings
                             </a>
                         <% } %>
-                        <form action="${pageContext.request.contextPath}/logout" method="post" style="display: inline;">
+                        <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                             <button type="submit" class="btn btn-primary">
                                 Logout
                             </button>
@@ -83,8 +84,9 @@
                 </div>
             </div>
         </nav>
+        <main>
         <!-- Hero Section with Background Image -->
-        <section class="hero" style="background-image: url('${pageContext.request.contextPath}/images/EventSphere%20background.png');">
+        <section class="hero hero-homepage">
             <div class="hero-overlay" aria-hidden="true">
             </div>
             <div class="hero-content">
@@ -95,6 +97,7 @@
                         Trusted by 10,000+ event organizers
                     </span>
                 </div>
+                <div class="hero-divider"></div>
                 <h1 class="hero-title">
                     Find The Perfect Venue
                     <br>
@@ -274,7 +277,6 @@
                                     <%= EscapeUtil.e(venue.getName()) %>
                                 </div>
                                 <div class="venue-location">
-                                    📍
                                     <%= EscapeUtil.e(venue.getLocation()) %>
                                 </div>
                                 <% if (homeCount > 0) { %>
@@ -296,7 +298,7 @@
                                     <%= String.format("%,.0f", venue.getHourlyRate()) %>
                                     /hour
                                 </div>
-                                <a href="${pageContext.request.contextPath}/venues?action=details&id=<%= venue.getId() %>" class="btn btn-primary" style="width: 100%;">
+                                <a href="${pageContext.request.contextPath}/venues?action=details&id=<%= venue.getId() %>" class="btn btn-primary btn-block">
                                     View Details
                                 </a>
                             </div>
@@ -304,9 +306,9 @@
                         <% count++; } %>
                     </div>
                 <% } else { %>
-                    <div class="alert alert-info" style="text-align: center; padding: 3rem;">
+                    <div class="alert alert-info alert-center">
                         No venues available at the moment.
-                        <a href="${pageContext.request.contextPath}/venues" style="color: var(--primary-color);">
+                        <a href="${pageContext.request.contextPath}/venues" class="alert-link">
                             Check back later
                         </a>
                     </div>
@@ -319,19 +321,17 @@
                 <h2>
                     About EventSphere
                 </h2>
-                <div class="grid grid-2" style="margin-top: 2rem; align-items: center;">
-                    <div>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark);">
+                <div class="grid grid-2 about-grid">
+                    <div class="about-text">
+                        <p class="about-lead">
                             EventSphere is your one-stop platform for finding and booking the perfect venue for any event. Whether you're planning a wedding, corporate conference, or private party, we connect you with premium venues that match your needs and budget.
                         </p>
-                        <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.8; color: var(--text-dark);">
+                        <p class="about-body">
                             Our platform makes event planning simple and hassle-free with secure bookings, competitive pricing, and verified venue information.
                         </p>
                     </div>
-                    <div style="text-align: center;">
-                        <div style="display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; font-size: 3rem; box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);">
-                            🎯
-                        </div>
+                    <div class="about-mark">
+                        <span class="mark">E</span>
                     </div>
                 </div>
             </div>
@@ -342,68 +342,52 @@
                 <h2>
                     Contact Us
                 </h2>
-                <div class="grid grid-2" style="margin-top: 2rem; gap: 3rem;">
-                    <div class="card" style="background: linear-gradient(135deg, var(--gray-lighter) 0%, white 100%);">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">
+                <div class="grid grid-2 contact-grid">
+                    <div class="card contact-info">
+                        <h3 class="contact-heading">
                             Get in Touch
                         </h3>
-                        <div style="display: flex; flex-direction: column; gap: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white;">
-                                    ✉️
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="contact-item-icon contact-icon-mail">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                                 </div>
                                 <div>
-                                    <strong style="color: var(--text-dark);">
-                                        Email
-                                    </strong>
-                                    <p style="margin: 0; color: var(--text-light); font-size: 0.95rem;">
-                                        support@eventsphere.com
-                                    </p>
+                                    <strong>Email</strong>
+                                    <p class="contact-item-text">support@eventsphere.com</p>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--success-color), #34d399); display: flex; align-items: center; justify-content: center; color: white;">
-                                    👤
+                            <div class="contact-item">
+                                <div class="contact-item-icon contact-icon-person">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 </div>
                                 <div>
-                                    <strong style="color: var(--text-dark);">
-                                        Name
-                                    </strong>
-                                    <p style="margin: 0; color: var(--text-light); font-size: 0.95rem;">
-                                        Omraj Chaudhary
-                                    </p>
+                                    <strong>Name</strong>
+                                    <p class="contact-item-text">Omraj Chaudhary</p>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--secondary-color), #fbbf24); display: flex; align-items: center; justify-content: center; color: white;">
-                                    📞
+                            <div class="contact-item">
+                                <div class="contact-item-icon contact-icon-phone">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                 </div>
                                 <div>
-                                    <strong style="color: var(--text-dark);">
-                                        Phone
-                                    </strong>
-                                    <p style="margin: 0; color: var(--text-light); font-size: 0.95rem;">
-                                        +91 8421 68766
-                                    </p>
+                                    <strong>Phone</strong>
+                                    <p class="contact-item-text">+91 8421 68766</p>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--danger-color), #f87171); display: flex; align-items: center; justify-content: center; color: white;">
-                                    📍
+                            <div class="contact-item">
+                                <div class="contact-item-icon contact-icon-location">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                 </div>
                                 <div>
-                                    <strong style="color: var(--text-dark);">
-                                        Address
-                                    </strong>
-                                    <p style="margin: 0; color: var(--text-light); font-size: 0.95rem;">
-                                        410511 Kuran, Pune, Maharashtra
-                                    </p>
+                                    <strong>Address</strong>
+                                    <p class="contact-item-text">410511 Kuran, Pune, Maharashtra</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">
+                        <h3 class="contact-heading">
                             Send a Message
                         </h3>
                         <% if ("sent".equals(request.getParameter("contact"))) { %>
@@ -415,7 +399,7 @@
                                 Please fill all fields correctly (message needs at least 10 characters).
                             </div>
                         <% } %>
-                        <form class="search-form" method="post" action="${pageContext.request.contextPath}/contact">
+                        <form class="search-form contact-form" method="post" action="${pageContext.request.contextPath}/contact">
                             <div class="form-group">
                                 <label for="contactName">
                                     Your Name
@@ -435,9 +419,9 @@
                                 <textarea id="contactMessage" name="contactMessage" placeholder="Your Message" rows="4" required maxlength="2000">
                                 </textarea>
                             </div>
-                            <div id="error-message" style="display: none;" class="alert alert-error">
+                            <div id="error-message" class="alert alert-error hidden">
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Send Message
                             </button>
                         </form>
@@ -446,7 +430,8 @@
             </div>
         </section>
         <!-- Footer -->
-        <footer class="footer">
+                </main>
+<footer class="footer">
             <div class="footer-container">
                 <div class="footer-content">
                     <div class="footer-section">
@@ -521,7 +506,7 @@
                         </ul>
                     </div>
                 </div>
-                <hr style="border: none; border-top: 1px solid #374151; margin: 2rem 0;">
+                <hr class="nav-divider">
                 <p>
                     &copy;
                     <%= java.time.Year.now() %>
@@ -529,7 +514,7 @@
                 </p>
             </div>
         </footer>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

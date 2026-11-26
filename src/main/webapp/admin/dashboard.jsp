@@ -43,11 +43,12 @@ List<Venue> allVenues = venueDAO.getAllVenues();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Admin Dashboard - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="admin-page">
         <nav class="navbar">
@@ -56,7 +57,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                     <img src="${pageContext.request.contextPath}/images/eventsphere-logo.svg" alt="EventSphere" class="brand-logo">
                 </a>
                 <div class="auth-buttons">
-                    <span style="color:#cbd5e1;margin-right:0.5rem;">
+                    <span class="nav-welcome">
                         Hi,
                         <%= EscapeUtil.e(adminName) %>
                     </span>
@@ -86,7 +87,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                     <a href="${pageContext.request.contextPath}/admin/admins.jsp" class="btn btn-outline">
                         Admins
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -145,7 +146,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
             <section class="stat-grid">
                 <button type="button" class="stat-card" data-goto="tab-venues">
                     <span class="stat-icon icon-indigo">
-                        &#127978;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01M12 6h.01M12 10h.01M12 14h.01"></path></svg>
                     </span>
                     <span class="stat-body">
                         <strong>
@@ -161,7 +162,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                 </button>
                 <button type="button" class="stat-card" data-goto="tab-recent">
                     <span class="stat-icon icon-green">
-                        &#128101;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </span>
                     <span class="stat-body">
                         <strong>
@@ -177,7 +178,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                 </button>
                 <button type="button" class="stat-card" data-goto="tab-recent">
                     <span class="stat-icon icon-amber">
-                        &#128179;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                     </span>
                     <span class="stat-body">
                         <strong>
@@ -193,7 +194,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                 </button>
                 <button type="button" class="stat-card stat-alert" data-goto="tab-pending">
                     <span class="stat-icon icon-red">
-                        &#9201;
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </span>
                     <span class="stat-body">
                         <strong>
@@ -524,7 +525,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
                                         <%= cu.getCreatedAt() == null ? "-" : cu.getCreatedAt().toLocalDate() %>
                                     </td>
                                     <td>
-                                        <form method="post" action="${pageContext.request.contextPath}/admin/customers" onsubmit="return confirmAction('Remove this customer? All their bookings, bills and reviews will be deleted too.')" style="display:inline;">
+                                        <form method="post" action="${pageContext.request.contextPath}/admin/customers" onsubmit="return confirmAction('Remove this customer? All their bookings, bills and reviews will be deleted too.')" class="inline-form">
                                             <input type="hidden" name="id" value="<%= cu.getId() %>">
                                             <button class="btn btn-danger btn-sm" type="submit">
                                                 Remove
@@ -795,7 +796,7 @@ List<Venue> allVenues = venueDAO.getAllVenues();
 </aside>
 </div>
 </main>
-<script src="${pageContext.request.contextPath}/js/script.js?v=5">
+<script src="${pageContext.request.contextPath}/js/script.js?v=12">
 </script>
 <script>
     document.querySelectorAll('.tab').forEach(function(btn){btn.addEventListener('click',function(){activateTab(btn.dataset.tab);

@@ -17,11 +17,12 @@ UserDAO userDAO = new UserDAO();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Hosts - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="bk-page">
         <nav class="navbar">
@@ -39,7 +40,7 @@ UserDAO userDAO = new UserDAO();
                     <a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">
                         Analytics
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -144,7 +145,7 @@ UserDAO userDAO = new UserDAO();
                                                 <%= venueDAO.getVenuesByHost(h.getId()).size() %>
                                             </td>
                                             <td>
-                                                <form method="post" action="${pageContext.request.contextPath}/admin/hosts" onsubmit="return confirmAction('Remove this host? Their venues stay listed.')" style="display:inline;">
+                                                <form method="post" action="${pageContext.request.contextPath}/admin/hosts" onsubmit="return confirmAction('Remove this host? Their venues stay listed.')" class="inline-form">
                                                     <input type="hidden" name="action" value="delete">
                                                     <input type="hidden" name="id" value="<%= h.getId() %>">
                                                     <button class="btn btn-danger btn-sm" type="submit">
@@ -161,7 +162,7 @@ UserDAO userDAO = new UserDAO();
                 </section>
             </div>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

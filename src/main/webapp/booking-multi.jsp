@@ -21,11 +21,12 @@ StringBuilder multiIds = new StringBuilder();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Book Multiple Venues - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -40,7 +41,7 @@ StringBuilder multiIds = new StringBuilder();
                     <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline">
                         My Bookings
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -48,13 +49,13 @@ StringBuilder multiIds = new StringBuilder();
                 </div>
             </div>
         </nav>
-        <main class="container" style="padding-top:2rem; padding-bottom:3rem;">
+        <main class="container booking-multi-page">
             <h1>
                 Book
                 <%= multiVenues.size() %>
                 Venues Together
             </h1>
-            <p style="color: var(--text-light);">
+            <p class="text-muted-small">
                 One event request is created per venue for the same date and time. Venues that clash are skipped and reported.
             </p>
             <% if (request.getAttribute("error") != null) { %>
@@ -62,14 +63,14 @@ StringBuilder multiIds = new StringBuilder();
                     <%= request.getAttribute("error") %>
                 </div>
             <% } %>
-            <div class="grid grid-3" style="margin-bottom: 2rem;">
+            <div class="grid grid-3 multi-venue-grid">
                 <% for (Venue v : multiVenues) { %>
                     <div class="card">
                         <strong>
                             <%= v.getName() %>
                         </strong>
                         <br>
-                        <span style="color: var(--text-light); font-size: 0.9rem;">
+                        <span class="text-muted-small">
                             <%= v.getLocation() %>
                             &middot; Cap
                             <%= v.getMaxCapacity() %>
@@ -143,7 +144,7 @@ StringBuilder multiIds = new StringBuilder();
                     <label for="promoCode">
                         Promo code (optional, applied to each booking)
                     </label>
-                    <input id="promoCode" name="promoCode" maxlength="30" placeholder="e.g. WELCOME10" style="text-transform:uppercase">
+                    <input id="promoCode" name="promoCode" maxlength="30" placeholder="e.g. WELCOME10" class="uppercase-input">
                 </div>
                 <div class="form-group">
                     <label for="notes">
@@ -159,7 +160,7 @@ StringBuilder multiIds = new StringBuilder();
                 </button>
             </form>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

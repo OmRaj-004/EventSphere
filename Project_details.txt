@@ -1,0 +1,469 @@
+EventSphere - Event & Venue Booking Platform
+================================================
+Complete Project Details for AI Tool Understanding
+================================================
+
+PROJECT OVERVIEW
+----------------
+Project Name: EventSphere - Event & Venue Booking Platform
+Version: 1.0.3
+Date: October 2026
+Academic Year: 2026-2027
+Class: TYBCA Sem-V
+Developer: Chaudhari Om Ajay Chaudhari
+Institute: Jaihind Institute of Management & Research, Pune
+Domain: Web Application Development / Event Management Systems
+Architecture: Three-tier (JSP/Servlet/PostgreSQL)
+Deployment: WAR on Apache Tomcat 11
+
+TECHNOLOGY STACK
+----------------
+Language: Java 25 (LTS) - runs on JDK 26
+Build Tool: Maven 3.9+ (compiler release 25)
+Web Framework: Jakarta Servlet 6.1, JSP 4.0, JSTL
+Server: Apache Tomcat 11
+Database: PostgreSQL 18
+Connection Pool: HikariCP 5.1.0
+Security: BCrypt 0.10.2 (cost 12), SHA-256 tokens
+PDF Generation: OpenPDF 1.3.30
+JSON Processing: Jakarta JSON-P 2.1.3, JSON-B 3.0.0
+Email: Jakarta Mail 2.0.1 (optional SMTP)
+Testing: JUnit 5.10.2, Mockito 5.11, Testcontainers
+Build: Maven 3.9 (compiler 3.14.0, WAR 3.4.0, Surefire 3.2.5)
+Frontend: HTML5, CSS3, Vanilla JavaScript (no frameworks)
+Database: PostgreSQL 18 via JDBC 42.7.3
+IDE: VS Code / MySQL Workbench
+Server: Apache Tomcat 11
+Packaging: WAR (EventSphere.war ~12MB)
+
+PROJECT STRUCTURE
+-----------------
+EventSphere/
+├── pom.xml                          # Maven build (v1.0.3, Java 25, WAR)
+├── database.sql                     # PostgreSQL schema: 13 tables, 22 indexes, seed data
+├── README.md                        # Project overview, architecture, setup, API
+├── SETUP_GUIDE.md                   # Step-by-step Windows setup instructions
+├── PROJECT_SUMMARY.md               # Implementation checklist & summary
+├── FILE_MANIFEST.md                 # Complete file inventory with sizes
+├── Synopsis.docx                    # Academic synopsis (formatted)
+├── docs/
+│   ├── EventSphere-Documentation.docx  # Full project doc with screenshots
+│   ├── Structure-Technologies.docx     # Structure & tech details
+│   └── screenshots/                    # 13 UI captures (input + output)
+├── src/
+│   ├── main/
+│   │   ├── java/com/eventsphere/
+│   │   │   ├── model/ (9 entities)
+│   │   │   ├── dao/ (12 DAOs)
+│   │   │   ├── servlet/ (11 servlets)
+│   │   │   ├── controller/ (12 controllers)
+│   │   │   ├── filter/ (6 filters)
+│   │   │   └── util/ (5 utilities)
+│   │   └── webapp/
+│   │       ├── *.jsp (30 JSPs)
+│   │       ├── css/style.css (78.7 KB)
+│   │       ├── js/script.js (20.7 KB)
+│   │       ├── images/ (14 venue photos + SVG logos)
+│   │       └── WEB-INF/web.xml
+│   └── test/ (8 test classes, 21 tests)
+├── target/EventSphere.war (build output, ~12MB)
+└── .gitignore
+
+BACKEND COMPONENTS (53 Java Classes)
+=====================================
+
+MODEL LAYER (9 Entities)
+------------------------
+1. User.java          - Base user with role (ADMIN/CUSTOMER/HOST)
+2. Venue.java         - Venue with capacity, rate, amenities, status
+3. Event.java         - Customer occasion linked to venue
+4. Booking.java       - Reservation with status, amounts, promo
+5. Bill.java          - Invoice (1:1 with booking)
+6. Feedback.java      - Rating (1-5), comment, photo, host reply
+6. Notification.java  - In-app message with read status
+7. PromoCode.java     - Discount code with usage tracking
+8. AuditLog.java      - Admin action trail
+9. LoginToken.java    - Remember-me token
+
+DAO LAYER (12 Classes)
+----------------------
+1. UserDAO          - Register, auth by role, BCrypt verify, profile updates
+2. VenueDAO         - CRUD, filtered search, pagination, host/admin listings
+3. EventDAO         - Occasion records per venue/organizer
+4. BookingDAO       - Numbered bookings, status flow, overlap checks, approval re-validation
+5. BillDAO          - One-invoice-per-booking math
+6. FeedbackDAO      - Ratings, averages, counts, eligibility checks
+7. NotificationDAO  - Role inboxes, unread counts
+8. PromoDAO         - Code validation, usage counting
+9. PasswordResetDAO - Hashed single-use/expiring tokens
+10. LoginTokenDAO   - Remember-me token management
+11. AuditDAO        - Admin action audit trail
+12. Supporting DAOs
+
+SERVLET CONTROLLERS (11 Public + 12 Business)
+----------------------------------------------
+Public Handlers:
+1. LoginServlet         - Role-aware login with BCrypt, session creation
+2. LogoutServlet        - Session invalidation
+3. RegisterServlet      - Customer registration with validation
+4. VenueServlet         - Browse, search, details
+5. ContactServlet       - Contact form processing
+6. FeedbackServlet      - Submit feedback
+7. FeedbackDeleteServlet - Delete own feedback
+8. ForgotPasswordServlet - Reset token generation
+8. ResetPasswordServlet - Password reset with token validation
+9. NotificationServlet  - In-app notifications (read, count, mark all)
+
+Business Controllers:
+9. BookingServlet       - Single booking with live estimate
+10. BookingEditServlet  - Reschedule pending bookings
+11. CustomerBookingServlet - Customer booking management
+12. BookingConfirmationServlet - Confirmation page
+12. BookingReceiptServlet - Printable receipt
+13. AdminBookingServlet - Approve/reject with audit & notifications
+14. AdminVenueServlet   - Venue CRUD + photo upload
+15. AdminCustomerServlet - Customer management
+16. AdminHostServlet    - Host management
+17. AdminPromoServlet   - Promo code management
+18. AdminFeedbackServlet - Feedback moderation
+19. AdminAdminServlet   - Admin account management
+19. HostVenueServlet    - Host venue management
+20. BillServlet         - HTML bill generation
+20. PdfBillServlet      - PDF invoice generation (OpenPDF)
+21. ContactServlet      - Contact form handling
+
+FILTERS (6)
+-----------
+1. AuthenticationFilter - Session validation, user loading
+2. AdminFilter          - ADMIN role required
+3. CustomerFilter       - CUSTOMER role required
+3. HostFilter           - HOST role required
+4. RememberMeFilter     - Auto-login via token cookie
+5. RateLimitFilter      - 5 req/15min per IP on auth endpoints
+6. CSRF Protection      - Token validation on state-changing POSTs
+
+UTILITIES (5)
+-------------
+1. DBUtil          - Lazy HikariCP pool (max 10, min 2), env-configurable
+2. MailUtil        - SMTP integration (off by default, logs fallback)
+3. TokenUtil       - Secure random tokens (reset, remember-me)
+4. EscapeUtil      - HTML escaping for XSS prevention
+5. FormatUtil      - Date/currency formatting helpers
+
+FRONTEND COMPONENTS (30 JSPs + Assets)
+=======================================
+
+PUBLIC PAGES (9)
+----------------
+1. index.jsp (28.2 KB) - Hero with live search, stats, featured venues, about, contact
+2. login.jsp (10.5 KB) - Three tabs: Admin/Customer/Host, remember-me
+3. register.jsp (6.8 KB) - Name, email, password, confirm with validation
+4. forgot-password.jsp (5.0 KB) - Email + role selector
+5. reset-password.jsp (4.5 KB) - Token + new password + confirm
+6. venues.jsp (12.7 KB) - AJAX filters, pagination, multi-select, ratings
+7. venue-details.jsp (15.2 KB) - Gallery, calendar, reviews, feedback form
+8. booking.jsp (6.6 KB) - Form with live price estimate
+8. booking-multi.jsp (7.1 KB) - Multi-venue booking
+9. forgot-password.jsp / reset-password.jsp - Password reset flow
+
+CUSTOMER PAGES (6)
+------------------
+10. customer/dashboard.jsp (21.9 KB) - Stats, upcoming, history, quick actions
+11. customer/bookings.jsp (0.1 KB - redirect stub) → dashboard
+12. customer/booking-edit.jsp (7.1 KB) - Reschedule pending booking
+13. customer/bill.jsp (11.9 KB) - Printable invoice + PDF
+14. customer/feedback.jsp (6.8 KB) - Review management
+15. customer/notifications.jsp (4.7 KB) - Inbox with read/unread
+
+ADMIN PAGES (10)
+----------------
+16. admin/dashboard.jsp (40 KB) - Stats, tabbed queues, charts, quick links
+17. admin/bookings.jsp (18.5 KB) - Full register with approve/reject
+18. admin/venues.jsp (11.2 KB) - Grid with edit/delete, add new
+18. admin/venue-form.jsp (21.1 KB) - Create/edit with photo upload
+19. admin/customers.jsp (8.1 KB) - Customer management
+19. admin/hosts.jsp (7.9 KB) - Host management
+20. admin/promos.jsp (8.9 KB) - Promo CRUD
+21. admin/admins.jsp (4.2 KB) - Admin management
+21. admin/analytics.jsp (18.7 KB) - Revenue, charts, rankings
+22. admin/notifications.jsp (4.7 KB) - Admin inbox
+
+HOST PAGES (3)
+--------------
+23. host/dashboard.jsp (12.5 KB) - Own venues stats, bookings
+24. host/venue-form.jsp (10.4 KB) - Own venue management
+25. host/notifications.jsp (4.2 KB) - Host inbox
+
+ERROR PAGES
+-----------
+24. error/404.jsp (1.9 KB)
+25. error/500.jsp (1.9 KB)
+
+ASSETS
+------
+- css/style.css (78.7 KB, 4000+ lines) - Tokens, components, dashboards, modal, lightbox
+- js/script.js (20.7 KB) - Validation, AJAX, modal, lightbox, price estimator
+- images/ - 12 venue JPGs, background, logo PNG + SVG logos
+
+KEY FEATURES IMPLEMENTED
+========================
+
+1. AUTHENTICATION & AUTHORIZATION
+---------------------------------
+- Three-role system: ADMIN, CUSTOMER, HOST (separate tables)
+- BCrypt password hashing (cost 12)
+- Session-based auth (30-min timeout, HttpOnly cookies)
+- Session fixation protection (changeSessionId on login)
+- Remember-me: SHA-256 hashed tokens, 30-day expiry
+- Self-service password reset: email tokens (SHA-256, single-use, 1hr expiry)
+- Rate limiting: 5 attempts/15 min per IP on /login, /register, /forgot, /reset
+- CSRF tokens on all state-changing forms
+- Role-based filters (Authentication, Admin, Customer, Host)
+- Session fixation protection (changeSessionId on login)
+
+2. VENUE MANAGEMENT
+-------------------
+- CRUD by admins and hosts
+- Search: event type, location, capacity, price range
+- Pagination (10/page)
+- Photo upload + URL picker with gallery
+- Availability calendar (2-month, booked dates from events)
+- Status: AVAILABLE / MAINTENANCE / INACTIVE
+- Host ownership with admin override
+
+3. BOOKING ENGINE
+-----------------
+- Single + multi-venue bookings
+- Live price estimate (hourly rate × duration, INR)
+- Promo code validation (%, usage limits)
+- Server-side validation: future date, start<end, guests≤capacity
+- Overlap prevention: transactional check at booking + re-check at approval
+- Status flow: PENDING → APPROVED/REJECTED/CANCELLED
+- Booking edit (reschedule) with re-validation
+- Cancellation (customer for PENDING, admin anytime)
+
+4. BILLING & INVOICING
+----------------------
+- One bill per booking (atomic creation with booking)
+- Server-calculated total (rate × hours, promo discount)
+- HTML bill + PDF generation (OpenPDF)
+- Print-optimized layout (original PNG logo for print)
+- Status: ISSUED / PAID / CANCELLED
+
+5. FEEDBACK & RATINGS
+---------------------
+- Only for APPROVED bookings
+- Rating 1-5 + comment + optional photo
+- One review per booking (partial unique index)
+- Average rating + count on venue cards/details
+- Host replies (admin can moderate)
+
+6. NOTIFICATIONS
+----------------
+- In-app bell icon with unread count
+- Types: booking decision, feedback reply, system
+- Role-scoped (ADMIN/CUSTOMER/HOST)
+- Mark-as-read (single/all), unread counts
+
+7. PROMO CODES
+--------------
+- Percentage discounts (1-90%)
+- Usage limits (max_uses, used_count)
+- Active/inactive toggle
+- Validation at booking time
+
+8. ADMIN ANALYTICS & REPORTS
+----------------------------
+- Booking stats by status
+- Revenue summary (billed, outstanding, avg)
+- Venue rankings by bookings/revenue
+- Monthly booking trends
+- Donut charts, horizontal bar charts
+
+9. AUDIT LOGGING
+----------------
+- Every admin action logged: actor, action, target, detail, timestamp
+- Queryable by actor, date, target type
+
+10. SEARCH & FILTERS
+--------------------
+- AJAX venue search with skeleton loaders
+- history.pushState for shareable URLs
+- Graceful fallback to full navigation
+- Skeleton cards during load
+
+11. UI/UX ENHANCEMENTS
+----------------------
+- Styled confirm modal (replaces native confirm/alert)
+- Toast notifications (success/error, auto-dismiss)
+- Venue image lightbox (click enlarge, ESC/overlay close)
+- Live price estimator on booking form
+- Inline per-field validation with aria-invalid
+- Skeleton loaders for AJAX operations
+- Responsive (5 breakpoints: 1024, 900, 768, 640, 560)
+- Skip-to-content, :focus-visible, prefers-reduced-motion
+- Vector brand logo + SVG favicon (original PNG for print)
+
+DATABASE DESIGN (13 Tables)
+===========================
+
+IDENTITY TABLES
+---------------
+admin_users (id, full_name, email UNIQUE, password_hash BCrypt, timestamps)
+customer_users (same columns) - self-registered
+host_users (same columns) - created by admins
+All passwords: BCrypt cost 12 in password_hash
+
+CATALOGUE TABLES
+----------------
+venues (id, name, description, location, event_type DEFAULT 'OTHER',
+        max_capacity CHECK>0, hourly_rate CHECK>=0, amenities, image_url,
+        available BOOL, status ENUM, created_by→admin_users, host_id→host_users, timestamps)
+events (id, name, description, event_type, event_date, start_time, end_time,
+        expected_guests, organizer_id, venue_id→venues SET NULL, status DEFAULT 'DRAFT', timestamps)
+
+TRANSACTION TABLES
+------------------
+bookings (id, booking_number UNIQUE, event_id→events CASCADE, venue_id→venues CASCADE,
+          customer_id→customer_users CASCADE, booking_date, total_amount, advance_paid,
+          discount_amount, promo_id→promocodes SET NULL,
+          status ENUM('PENDING','APPROVED','REJECTED','CANCELLED'),
+          payment_method, transaction_id, notes, timestamps)
+
+bills (id, bill_number UNIQUE, booking_id UNIQUE→bookings CASCADE,
+       customer_id→customer_users CASCADE, subtotal, advance_paid, balance_due,
+       status ENUM('ISSUED','PAID','CANCELLED'), created_at)
+
+ENGAGEMENT TABLES
+-----------------
+feedback (id, booking_id→bookings SET NULL, customer_id→customer_users CASCADE,
+          venue_id→venues CASCADE, rating CHECK 1-5, comment, image_url,
+          admin_reply, created_at) - unique index (booking_id, customer_id)
+
+notifications (id, user_id, user_role ENUM, title, body, link, is_read DEFAULT FALSE, created_at)
+
+promocodes (code UNIQUE, percent_off CHECK 1-90, max_uses, used_count, active, created_at)
+
+SECURITY TABLES
+---------------
+password_resets (email, role ENUM, token_hash SHA-256 UNIQUE, expires_at, used, created_at)
+login_tokens (user_id, user_role, token_hash UNIQUE, expires_at, created_at)
+
+GOVERNANCE
+----------
+audit_logs (actor_id, actor_role, action, target_type, target_id, detail, created_at)
+
+INDEXES (22)
+------------
+- idx_admin_users_email, idx_customer_users_email
+- idx_venues_created_by, idx_venues_event_type, idx_venues_location, idx_venues_status
+- idx_events_organizer_id, idx_events_venue_id, idx_events_date
+- idx_bookings_customer_id, idx_bookings_status, idx_bookings_venue_id, idx_bookings_venue_date, idx_bookings_booking_date
+- idx_bills_booking_id, idx_bills_customer_id
+- idx_feedback_venue_id
+- idx_notifications_user (user_id, user_role, is_read)
+- idx_password_resets_token, idx_login_tokens_token
+- idx_audit_logs_actor
+- idx_feedback_booking_customer (partial unique on booking_id, customer_id)
+
+SECURITY IMPLEMENTATION
+=======================
+- BCrypt cost 12 password hashing (zero plaintext)
+- SHA-256 for reset/remember tokens (single-use, expiry)
+- Session fixation protection (changeSessionId on login)
+- HttpOnly, 30-min sessions, Secure cookies in prod
+- Identity always from session (never request params)
+- Rate limiting: 5 req/15 min per IP on auth endpoints
+- CSRF tokens on all state-changing POST forms
+- Prepared statements everywhere (zero SQLi)
+- Output escaping via EscapeUtil (XSS prevention)
+- Rate limiting on auth endpoints (5/15min/IP)
+- Destructive actions: POST + CSRF + confirm modal
+- Audit logging for all admin actions
+- Audit logging for all admin actions
+
+BUILD & DEPLOYMENT
+==================
+- mvn clean package → target/EventSphere.war (~12 MB)
+- Deploy: copy WAR to Tomcat 11 webapps/, restart Tomcat11 service
+- Access: http://localhost:8080/EventSphere
+- Config via env vars: EVENTSPHERE_DB_URL, EVENTSPHERE_DB_USER, EVENTSPHERE_DB_PASSWORD
+- DB: PostgreSQL 18, `database.sql` applied via psql (13 tables, seeds)
+- No external services required for core flows
+
+TESTING RESULTS (Oct 16, 2026)
+==============================
+Automated: 21/21 JUnit 5 tests pass (BUILD SUCCESS)
+Manual: All critical flows verified (reg, login, booking, approve, review)
+Security: SQLi, XSS, CSRF, session fixation, rate limiting verified
+Auth: Admin/customer/host login, role isolation (403)
+Live data: 14 bookings (10 approved), ₹168025.00 billed, ₹12001.79 avg
+
+DOCUMENTATION
+=============
+- README.md - Overview, stack, structure, setup, API, features
+- SETUP_GUIDE.md - Prerequisites, DB, build, deploy, troubleshooting
+- PROJECT_SUMMARY.md - Checklist, architecture, verification
+- FILE_MANIFEST.md - Complete file inventory with sizes
+- SETUP_GUIDE.md - Step-by-step Windows setup
+- Synopsis.docx - Academic synopsis (formatted)
+- docs/EventSphere-Documentation.docx - Full project doc with screenshots
+- docs/Structure-Technologies.docx - Structure & tech details
+- docs/screenshots/ - 13 UI screenshots (input + output)
+
+DEPLOYMENT CHECKLIST
+====================
+1. Java 25+ installed, JAVA_HOME set
+2. Maven 3.9+ in PATH
+3. PostgreSQL 12+ running, DB `eventsphere` created, `database.sql` executed
+4. Tomcat 11 installed, CATALINA_HOME set, service `Tomcat11` running
+5. mvn clean package → target/EventSphere.war
+6. Copy WAR to Tomcat webapps/, restart Tomcat11
+6. Access http://localhost:8080/EventSphere
+7. Admin login: admin@eventsphere.com / Admin@141#233
+8. Change admin password immediately
+9. Test customer registration → booking → admin approve → review flow
+
+KNOWN LIMITATIONS
+=================
+1. No online payment gateway (manual payment tracking)
+2. No email delivery (SMTP optional, falls back to logs + in-app)
+3. No caching layer (Redis/ehcache) - direct DB queries
+4. No mobile app or API (web only)
+5. No multi-language support (English only)
+6. No advanced caching for venue search at scale
+7. File upload stores path only (no blob storage, no image processing)
+8. No automated backup scheduling (manual pg_dump)
+9. No CDN for static assets
+10. Search limited to basic filters (no full-text search)
+
+FUTURE ENHANCEMENTS
+===================
+1. Payment gateway integration (Stripe/Razorpay)
+2. Email notifications (SMTP + templates)
+3. Redis caching for venue search
+4. REST API for mobile app
+5. Multi-language support (i18n)
+6. Advanced analytics (charts, exports)
+7. Image upload with resize/compression (S3/local)
+8. Automated backups + monitoring
+9. Full-text search (PostgreSQL tsvector)
+10. Webhooks for third-party integrations
+
+KEY FILES FOR QUICK REFERENCE
+=============================
+- pom.xml - Build config, dependencies
+- database.sql - Full schema + seeds
+- src/main/java/com/eventsphere/util/DBUtil.java - Connection pool
+- src/main/java/com/eventsphere/filter/ - All filters
+- src/main/java/com/eventsphere/controller/ - Business logic
+- src/main/java/com/eventsphere/dao/ - Data access
+- src/main/webapp/js/script.js - All frontend logic
+- src/main/webapp/css/style.css - All styling
+- src/main/webapp/WEB-INF/web.xml - Deployment descriptor
+- database.sql - Full schema + seeds
+
+--- END OF PROJECT DETAILS ---
+This file contains all components, features, technical details, and implementation specifics
+required for another AI tool to fully understand the EventSphere project in its current state.
+All information is accurate as of October 2026 (v1.0.3).

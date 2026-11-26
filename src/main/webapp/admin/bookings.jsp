@@ -29,11 +29,12 @@ final int BK_SIZE = 15;
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Manage Bookings - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="bk-page">
         <nav class="navbar">
@@ -51,7 +52,7 @@ final int BK_SIZE = 15;
                     <a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">
                         Analytics
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -315,7 +316,7 @@ final int BK_SIZE = 15;
             <% } %>
         </section>
     </main>
-    <script src="${pageContext.request.contextPath}/js/script.js?v=5">
+    <script src="${pageContext.request.contextPath}/js/script.js?v=12">
     </script>
     <script>
         var pills=document.querySelectorAll('.bk-filter'),stats=document.querySelectorAll('.bk-stat'),search=document.getElementById('bkSearch'),sort=document.getElementById('bkSort'),table=document.getElementById('bkTable');

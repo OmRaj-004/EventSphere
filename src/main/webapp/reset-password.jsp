@@ -4,11 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Set New Password - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -23,9 +24,10 @@
                 </div>
             </div>
         </nav>
-        <section style="padding: 3rem 2rem; background-color: var(--gray-lighter);">
+        <main>
+        <section class="reset-page">
             <div class="container">
-                <div style="max-width: 500px; margin: 0 auto;">
+                <div class="register-form-container">
                     <div class="card">
                         <h2 class="card-header">
                             Choose a New Password
@@ -58,9 +60,9 @@
                                 </label>
                                 <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter password" autocomplete="new-password">
                             </div>
-                            <div id="error-message" style="display: none;" class="alert alert-error">
+                            <div id="error-message" class="alert alert-error hidden">
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Update Password
                             </button>
                         </form>
@@ -68,7 +70,8 @@
                 </div>
             </div>
         </section>
-        <footer class="footer" style="margin-top: 3rem;">
+                </main>
+<footer class="footer footer-compact">
             <div class="footer-container">
                 <p>
                     &copy;
@@ -77,7 +80,7 @@
                 </p>
             </div>
         </footer>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
         <script>
             function validateResetForm(form) {
@@ -88,6 +91,6 @@
             if (p !== c) { showError('Passwords do not match'); return false; }
             return true;
             }
-            </script>
-            </body>
-            </html>
+        </script>
+        </body>
+        </html>

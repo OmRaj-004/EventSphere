@@ -22,12 +22,13 @@ Venue formVenue = (Venue) request.getAttribute("venue");
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             <%= isEdit ? "Edit Venue" : "List a Venue" %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="host-page">
         <nav class="navbar">
@@ -42,7 +43,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                     <a href="${pageContext.request.contextPath}/host/dashboard.jsp" class="btn btn-outline">
                         Dashboard
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -68,7 +69,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                         Cancel
                     </a>
                     <% if (isEdit) { %>
-                        <form method="post" action="${pageContext.request.contextPath}/host/venues" style="display:inline;" onsubmit="return confirmAction('Delete this venue?')">
+                        <form method="post" action="${pageContext.request.contextPath}/host/venues" class="inline-form" onsubmit="return confirmAction('Delete this venue?')">
                             <input type="hidden" name="id" value="<%= formVenue.getId() %>">
                             <input type="hidden" name="action" value="delete">
                             <button class="btn btn-danger" type="submit">
@@ -78,7 +79,7 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                     <% } %>
                 </div>
             </div>
-            <div id="error-message" style="display:none;" class="alert alert-error">
+            <div id="error-message" class="alert alert-error hidden">
             </div>
             <form method="post" action="${pageContext.request.contextPath}/host/venues" enctype="multipart/form-data" class="host-panel" onsubmit="return validateVenueForm(this)">
                 <input type="hidden" name="id" value="<%= isEdit ? String.valueOf(formVenue.getId()) : "" %>">
@@ -170,14 +171,14 @@ Venue formVenue = (Venue) request.getAttribute("venue");
                         </span>
                     </label>
                 </div>
-                <p style="margin-top:1.25rem;">
+                <p class="mt-5">
                     <button class="btn btn-primary btn-lg" type="submit">
                         <%= isEdit ? "Save changes" : "List Venue" %>
                     </button>
                 </p>
             </form>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
         <script>
             function validateVenueForm(form) {

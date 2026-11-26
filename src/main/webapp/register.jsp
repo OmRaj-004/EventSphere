@@ -5,11 +5,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Register - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <!-- Navigation Bar -->
@@ -32,10 +33,11 @@
                 </div>
             </div>
         </nav>
+        <main>
         <!-- Registration Form -->
-        <section style="padding: 3rem 2rem; background-color: var(--gray-lighter);">
+        <section class="register-page">
             <div class="container">
-                <div style="max-width: 500px; margin: 0 auto;">
+                <div class="register-form-container">
                     <div class="card">
                         <h2 class="card-header">
                             Create Account
@@ -56,8 +58,8 @@
                         %>
                             <div class="alert alert-success">
                                 <%= success %>
-                                <p style="margin-top: 1rem;">
-                                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">
+                                <p class="register-success-link">
+                                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary btn-block">
                                         Go to Login
                                     </a>
                                 </p>
@@ -90,7 +92,7 @@
                                     </span>
                                 </label>
                                 <input type="password" id="password" name="password" required placeholder="Minimum 6 characters" autocomplete="new-password">
-                                <small style="color: var(--text-light); margin-top: 0.25rem; display: block;">
+                                <small class="password-hint">
                                     Password must be at least 6 characters long
                                 </small>
                             </div>
@@ -103,16 +105,16 @@
                                 </label>
                                 <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter your password" autocomplete="new-password">
                             </div>
-                            <div id="error-message" style="display: none;" class="alert alert-error">
+                            <div id="error-message" class="alert alert-error hidden">
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 Create Account
                             </button>
                         </form>
-                        <div style="margin-top: 1.5rem; text-align: center;">
+                        <div class="register-login-link">
                             <p>
                                 Already have an account?
-                                <a href="${pageContext.request.contextPath}/login" style="color: var(--primary-color); font-weight: bold;">
+                                <a href="${pageContext.request.contextPath}/login" class="login-link register-link">
                                     Login here
                                 </a>
                             </p>
@@ -122,7 +124,8 @@
             </div>
         </section>
         <!-- Footer -->
-        <footer class="footer" style="margin-top: 3rem;">
+                </main>
+<footer class="footer footer-compact">
             <div class="footer-container">
                 <p>
                     &copy;
@@ -131,7 +134,7 @@
                 </p>
             </div>
         </footer>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

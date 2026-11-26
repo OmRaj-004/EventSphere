@@ -17,13 +17,14 @@ Booking booking = (Booking) request.getAttribute("booking");
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Edit
             <%= booking.getBookingNumber() %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -38,7 +39,7 @@ Booking booking = (Booking) request.getAttribute("booking");
                     <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline">
                         My Bookings
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -46,12 +47,12 @@ Booking booking = (Booking) request.getAttribute("booking");
                 </div>
             </div>
         </nav>
-        <main class="container" style="padding-top:2rem; padding-bottom:3rem; max-width: 760px;">
+        <main class="container booking-edit-page">
             <h1>
                 Edit
                 <%= booking.getBookingNumber() %>
             </h1>
-            <p style="color: var(--text-light);">
+            <p class="text-muted-small">
                 <%= com.eventsphere.util.EscapeUtil.e(venue.getName()) %>
                 &middot; Rs.
                 <%= venue.getHourlyRate() %>
@@ -131,17 +132,17 @@ Booking booking = (Booking) request.getAttribute("booking");
                         <%= event.getDescription() == null ? "" : com.eventsphere.util.EscapeUtil.e(event.getDescription()) %>
                     </textarea>
                 </div>
-                <div id="error-message" style="display: none;" class="alert alert-error">
+                <div id="error-message" class="alert alert-error hidden">
                 </div>
                 <button type="submit" class="btn btn-primary">
                     Save Changes
                 </button>
-                <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline" style="margin-left: 0.75rem;">
+                <a href="${pageContext.request.contextPath}/customer/dashboard.jsp" class="btn btn-outline btn-ml">
                     Cancel
                 </a>
             </form>
         </main>
-        <script src="${pageContext.request.contextPath}/js/script.js">
+        <script src="${pageContext.request.contextPath}/js/script.js?v=12">
         </script>
     </body>
 </html>

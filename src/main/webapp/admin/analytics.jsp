@@ -68,11 +68,12 @@ long bTotal = Math.max(allBookings.size(), 1);
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Analytics - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="an-page">
         <nav class="navbar">
@@ -90,7 +91,7 @@ long bTotal = Math.max(allBookings.size(), 1);
                     <a href="${pageContext.request.contextPath}/admin/venues.jsp" class="btn btn-outline">
                         Venues
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -365,7 +366,7 @@ long bTotal = Math.max(allBookings.size(), 1);
         <% } %>
     </section>
 </div>
-<section class="an-panel" style="margin-top: 1.25rem;">
+<section class="an-panel an-panel-mt">
     <h2>
         Recent admin activity
     </h2>
@@ -401,7 +402,7 @@ long bTotal = Math.max(allBookings.size(), 1);
                 <tbody>
                     <% for (com.eventsphere.model.AuditLog a : activity) { %>
                         <tr>
-                            <td style="white-space:nowrap;" title="<%= a.getCreatedAt() == null ? "" : com.eventsphere.util.EscapeUtil.e(a.getCreatedAt().toString()) %>">
+                            <td class="nowrap" title="<%= a.getCreatedAt() == null ? "" : com.eventsphere.util.EscapeUtil.e(a.getCreatedAt().toString()) %>">
                                 <%= a.getCreatedAt() == null ? "-" : a.getCreatedAt().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) %>
                             </td>
                             <td>

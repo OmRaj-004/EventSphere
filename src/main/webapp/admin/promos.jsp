@@ -16,11 +16,12 @@ PromoDAO promoDAO = new PromoDAO();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             Promo Codes - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=5">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body class="bk-page">
         <nav class="navbar">
@@ -38,7 +39,7 @@ PromoDAO promoDAO = new PromoDAO();
                     <a href="${pageContext.request.contextPath}/admin/analytics.jsp" class="btn btn-outline">
                         Analytics
                     </a>
-                    <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                         <button type="submit" class="btn btn-primary">
                             Logout
                         </button>
@@ -80,7 +81,7 @@ PromoDAO promoDAO = new PromoDAO();
                             <label for="code">
                                 Code *
                             </label>
-                            <input id="code" name="code" required maxlength="30" placeholder="e.g. DIWALI25" style="text-transform:uppercase">
+                            <input id="code" name="code" required maxlength="30" placeholder="e.g. DIWALI25" class="uppercase-input">
                         </div>
                         <div class="form-group">
                             <label for="percent">
@@ -152,7 +153,7 @@ PromoDAO promoDAO = new PromoDAO();
                                                 </span>
                                             </td>
                                             <td>
-                                                <form method="post" action="${pageContext.request.contextPath}/admin/promos" style="display:inline;">
+                                                <form method="post" action="${pageContext.request.contextPath}/admin/promos" class="inline-form">
                                                     <input type="hidden" name="action" value="toggle">
                                                     <input type="hidden" name="id" value="<%= p.getId() %>">
                                                     <% if (p.isActive()) { %>

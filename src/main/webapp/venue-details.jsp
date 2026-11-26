@@ -9,12 +9,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EventSphere is a premium venue booking platform for weddings, conferences and events. Discover and book the perfect venue.">
         <title>
             <%= EscapeUtil.e(venue.getName()) %>
             - EventSphere
         </title>
         <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/images/eventsphere-icon.svg">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=11">
     </head>
     <body>
         <nav class="navbar">
@@ -31,7 +32,7 @@
                         Object navRole = session.getAttribute("userRole");
                         if (user != null) {
                     %>
-                        <span style="color: white; margin-right: 1rem;">
+                        <span class="nav-welcome">
                             Welcome,
                             <%= EscapeUtil.e(session.getAttribute("userName")) %>
                         </span>
@@ -48,7 +49,7 @@
                                 My Bookings
                             </a>
                         <% } %>
-                        <form action="${pageContext.request.contextPath}/logout" method="post" style="display: inline;">
+                        <form action="${pageContext.request.contextPath}/logout" method="post" class="nav-logout-form">
                             <button type="submit" class="btn btn-primary">
                                 Logout
                             </button>
@@ -61,7 +62,7 @@
                 </div>
             </div>
         </nav>
-        <main id="main" class="container" style="padding-top:2rem;">
+        <main id="main" class="container venue-details-page">
             <% if (request.getParameter("feedbackSuccess") != null) { %>
                 <div class="alert alert-success">
                     <%= EscapeUtil.e(request.getParameter("feedbackSuccess")) %>
@@ -205,11 +206,9 @@
         </div>
         <p class="cal-legend">
             <span class="cal-cell cal-booked">
-                ##
             </span>
             booked &nbsp;
             <span class="cal-cell">
-                ##
             </span>
             free
         </p>
@@ -224,7 +223,7 @@
             long venueCount = feedbackDAO.countByVenue(venue.getId());
             if (venueCount > 0) {
         %>
-            <p class="venue-rating" style="font-size: 1.1rem;">
+            <p class="venue-rating venue-rating-lg">
                 ★
                 <%= String.format("%.1f", venueAvg) %>
                 average from
@@ -246,7 +245,7 @@
                     <%= feedback.getRating() %>
                     /5
                 </strong>
-                <small style="color: var(--text-light);">
+                <small class="text-muted-small">
                     <%= com.eventsphere.util.FormatUtil.dt(feedback.getCreatedAt()) %>
                 </small>
                 <% if (feedback.getImageUrl() != null && !feedback.getImageUrl().isBlank()) { %>
