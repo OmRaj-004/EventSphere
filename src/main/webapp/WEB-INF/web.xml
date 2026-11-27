@@ -13,6 +13,22 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Authentication security filter: declared here (not annotated) so its
+         position relative to other new filters remains deterministic. -->
+    <filter>
+        <filter-name>AuthSecurityFilter</filter-name>
+        <filter-class>com.eventsphere.filter.AuthSecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthSecurityFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/register</url-pattern>
+        <url-pattern>/forgot-password</url-pattern>
+        <url-pattern>/reset-password</url-pattern>
+        <url-pattern>/admin/admins</url-pattern>
+        <url-pattern>/admin/hosts</url-pattern>
+    </filter-mapping>
+
     <!-- Session Configuration -->
     <session-config>
         <cookie-config>
@@ -32,6 +48,11 @@
     <error-page>
         <error-code>500</error-code>
         <location>/error/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>429</error-code>
+        <location>/error/429.jsp</location>
     </error-page>
 
 </web-app>

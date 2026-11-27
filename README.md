@@ -146,6 +146,11 @@ cp target/EventSphere.war $CATALINA_HOME/webapps/
 
 Tomcat 11 deployment uses the generated WAR copied into the Tomcat `webapps` directory.
 
+> **Deployment scope:** EventSphere is kept as a local development/testing project.
+> Container and cloud-hosting files (`Dockerfile`, `.dockerignore`, `DEPLOY-RENDER.md`,
+> `database-neon.sql`) are intentionally not part of this repository. Use the local
+> PostgreSQL + Tomcat instructions in `SETUP_GUIDE.md` and `database.sql`.
+
 ### 4. Run the Application
 
 Start Tomcat and access the application at:
